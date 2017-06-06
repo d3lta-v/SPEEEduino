@@ -1,4 +1,7 @@
+![Populated PCB](https://github.com/sammy0025/SPEEEduino/raw/master/Image%20Assets/PCBPreview-Front-Populated.png)
+
 Designed by MakerFoundry LLP | Designed, assembled and tested in Singapore
+
 # SPEEEduino
 SPEEEduino is an easy to use Wi-Fi enabled microcontroller, designed and fabricated by EEE students. Users can write programs to connect or control things over the Internet.
 
