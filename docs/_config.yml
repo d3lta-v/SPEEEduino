@@ -1,18 +1,1 @@
 theme: jekyll-theme-cayman
-# Setup
-title:        SPEEEduino Official Documentation
-tagline:      Simple, straightforward ESP8266 and Arduino fusion board for educators
-baseurl:      "/SPEEEduino"
-paginate:     1
-
-# About/contact
-author:
-  name:       Pan Ziyue
-  url:        https://fourier.industries
-
-# Gems
-gems:
-  - jekyll-paginate
-
-#Others
-markdown: kramdown
