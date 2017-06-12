@@ -1,38 +1,18 @@
-## Welcome to GitHub Pages
+## SPEEEduino Official Documentation
 
-You can use the [editor on GitHub](https://github.com/sammy0025/SPEEEduino-Site/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+The SPEEEduino (SP-EEE-duino, pronounced speed-duino) is an Open Source, modified Arduino board with an integrated ESP8266-01 Wi-Fi module socket, allowing for users to connect both devices with ease. The ESP8266 enables the Arduino to connect to the Internet with Wi-Fi, making this a great starting platform for simple IoT devices and projects. 
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Created by Singapore Polytechnic's Makers' Club.
 
-### Markdown
+Students involved are Ziyue ([@sammy0025](https://twitter.com/sammy0025)), Julian Kang ([@Julian_KBK](https://twitter.com/Julian_KBK)), Qian Zhe ([@QianZheGoh](https://twitter.com/QianZheGoh)) and Sean Tin under the supervision of Mr Teo Shin Jen.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+**NOTE: This documentation page is still under construction**
 
-```markdown
-Syntax highlighted code block
+### Developers
+Chief Designer: Pan Ziyue ([@sammy0025](https://twitter.com/sammy0025))
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/sammy0025/SPEEEduino-Site/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+Assistants/Advisers: Julian Kang ([@Julian_KBK](https://twitter.com/Julian_KBK)), Goh Qian Zhe ([@QianZheGoh](https://twitter.com/QianZheGoh)), Sean Tin
 
 ### Support or Contact
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
-```
+Having trouble with SPEEEduino and its usage? Check out our [Github](https://help.github.com/categories/github-pages-basics/) or [contact us](https://github.com/contact) and we’ll help you sort it out.
