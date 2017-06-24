@@ -4,7 +4,7 @@
 
 ![Populated PCB](https://github.com/sammy0025/SPEEEduino/raw/master/Image%20Assets/PCBPreview-Front-Populated.png)
 
-The SPEEEduino (SP-EEE-duino, pronounced speed-duino) is an Open Source, modified Arduino board with an integrated ESP8266-01 Wi-Fi module socket, allowing for users to connect both devices with ease. The ESP8266 enables the Arduino to connect to the Internet with Wi-Fi, making this a great starting platform for simple IoT devices and projects. 
+The SPEEEduino (SP-EEE-duino, pronounced speed-duino) is an Open Source, modified Arduino board with an integrated ESP8266-01 Wi-Fi module socket, allowing for users to connect both devices with ease. The ESP8266 enables the Arduino to connect to the Internet with Wi-Fi, making this a great starting platform for simple IoT devices and projects.
 
 Created by Singapore Polytechnic's Makers' Club.
 
@@ -12,7 +12,13 @@ Students involved are Ziyue ([@sammy0025](https://twitter.com/sammy0025)), Julia
 
 **NOTE: This home page is still under construction**
 
-### Developers
+### Getting started
+
+For documentation on this project, please refer to our [Github Wiki](https://github.com/sammy0025/SPEEEduino/wiki) for more information.
+
+For old project logs (which are being migrated away from Google Sites to Github Pages), click [here](https://sites.google.com/view/speeeduino/home).
+
+### Our team
 Chief Designer: Pan Ziyue ([@sammy0025](https://twitter.com/sammy0025))
 
 Assistants/Advisers: Julian Kang ([@Julian_KBK](https://twitter.com/Julian_KBK)), Goh Qian Zhe ([@QianZheGoh](https://twitter.com/QianZheGoh)), Sean Tin
