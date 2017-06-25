@@ -1,5 +1,5 @@
 ---
-layout: index
+layout: default
 ---
 ## SPEEEduino Official Webpage
 
