@@ -1,6 +1,5 @@
 ---
 layout: index
-title: SPEEEduino Official Webpage
 ---
 ## SPEEEduino Official Webpage
 
