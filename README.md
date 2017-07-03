@@ -22,6 +22,7 @@ A simplified version of this table is also available on the back of the SPEEEdui
 | Flash ESP-01 | ⬇️ | ⬆️ | ⬇️ | ⬇️ | Press down, set switches, release |
 
 ## Authors
+* Project Supervisor: [Teo Shin Jen](https://www.youracclaim.com/user/sjteo)
 * Chief Designer: Pan Ziyue ([@sammy0025](https://twitter.com/sammy0025))
 * Assistants/Advisers: Julian Kang ([@Julian_KBK](https://twitter.com/Julian_KBK)), Goh Qian Zhe ([@QianZheGoh](https://twitter.com/QianZheGoh))
 * The awesome folks at Arduino, Sparkfun and Adafruit for technical reference and ECAD models.
