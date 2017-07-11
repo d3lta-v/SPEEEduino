@@ -1,0 +1,7 @@
+SPEEEduino_LowLevel	KEYWORD1
+
+openLink	KEYWORD2
+slowOpenLink	KEYWORD2
+smokeTest	KEYWORD2
+
+STATION	LITERAL1
