@@ -56,7 +56,7 @@ public:
     int16_t smokeTest();
     int16_t listVersion();
     int16_t reset();
-    int16_t deepSleep(const uint16_t sleepTime, const bool blocking);
+    int16_t beginDeepSleep(const uint16_t sleepTime, const bool blocking);
 
     int16_t setWiFiMode(WiFiMode mode);
     int16_t listAP();
@@ -67,10 +67,10 @@ public:
     int16_t setStationName(String name);
 
     int16_t setConnectionAmount(ConnectionAmount amount);
-    int16_t startSingleConnection(ConnectionType type, String remoteIP, String remotePort);
+    int16_t beginSingleConnection(ConnectionType type, String remoteIP, String remotePort);
     int16_t sendDataSingleConnection(String data);
     void receiveDataSingleConnection();
-    int16_t closeConnection(int8_t linkID = -1);
+    int16_t endConnection(int8_t linkID = -1);
     int16_t setSSLBufferSize(uint16_t bufferSize);
 
     int16_t wait(char* values, uint16_t timeOut);

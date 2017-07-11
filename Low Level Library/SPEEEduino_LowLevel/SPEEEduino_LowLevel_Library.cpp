@@ -106,7 +106,7 @@ int16_t SPEEEduino_LowLevel::reset() {
  * @param blocking Whether or not to block the SPEEEduino's MCU using the wait() function
  * @return 0, if it successfully sleeps and recovers and -1 if it times out (when blocking=true), and always 0 if blocking = false
  */
-int16_t SPEEEduino_LowLevel::deepSleep(const uint16_t sleepTime, const bool blocking) {
+int16_t SPEEEduino_LowLevel::beginDeepSleep(const uint16_t sleepTime, const bool blocking) {
     String command = "AT+GSLP=";
     command += String(sleepTime);
     command += "\r\n";
@@ -235,7 +235,7 @@ int16_t SPEEEduino_LowLevel::setConnectionAmount(ConnectionAmount amount) {
  * @param remotePort The port of the server it's connecting to
  * @return 0 if successfully established connection, 1 if there's an error with the connection, 2 if the connection socket is in use, and -1 if the command timed out
  */
-int16_t SPEEEduino_LowLevel::startSingleConnection(ConnectionType type, String remoteIP, String remotePort) {
+int16_t SPEEEduino_LowLevel::beginSingleConnection(ConnectionType type, String remoteIP, String remotePort) {
     String command = "AT+CIPSTART=\"";
     command += ConnectionTypeStrings[type];
     command += ",\"";
@@ -286,7 +286,7 @@ void SPEEEduino_LowLevel::receiveDataSingleConnection() {
  * @param linkID Optional, link ID, ranging from 0 to 4 if you're using multiple connections, and 5 if you want to close all connections. Do not input this parameter if you're using a single connection.
  * @return 0 if the connection is closed, 1 if the command failed, -1 if the command timed out
  */
-int16_t SPEEEduino_LowLevel::closeConnection(int8_t linkID = -1) {
+int16_t SPEEEduino_LowLevel::endConnection(int8_t linkID = -1) {
     String command = "AT+CIPCLOSE";
     if (linkID >= 0 && linkID <= 5) {
         command += "=";

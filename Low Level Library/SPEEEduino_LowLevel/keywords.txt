@@ -6,7 +6,7 @@ slowOpenLink	KEYWORD2
 smokeTest	KEYWORD2
 listVersion	KEYWORD2
 reset	KEYWORD2
-deepSleep	KEYWORD2
+beginDeepSleep	KEYWORD2
 setWiFiMode	KEYWORD2
 listAP	KEYWORD2
 joinAP	KEYWORD2
@@ -15,10 +15,10 @@ getLocalIP	KEYWORD2
 setDHCPEnabled	KEYWORD2
 setStationName	KEYWORD2
 setConnectionAmount	KEYWORD2
-startSingleConnection	KEYWORD2
+beginSingleConnection	KEYWORD2
 sendDataSingleConnection	KEYWORD2
 receiveDataSingleConnection	KEYWORD2
-closeConnection	KEYWORD2
+endConnection	KEYWORD2
 setSSLBufferSize	KEYWORD2
 wait	KEYWORD2
 STATION	LITERAL1
