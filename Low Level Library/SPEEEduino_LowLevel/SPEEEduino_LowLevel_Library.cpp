@@ -31,7 +31,7 @@ SPEEEduino_LowLevel::SPEEEduino_LowLevel(bool debugMode=false) : _ESP01(2, 4) {
  * Inputs raw text into the ESP-01 module. This command INCLUDES the carriage return and newline characters
  * @warning Make sure that you manually
  *
- * @param debug Whether to enable debugging mode (i.e. logging to serial monitor), defaults to false
+ * @param input Your input into the ESP8266 module
  */
 void SPEEEduino_LowLevel::rawInput(String input) {
     input += "\r\n";
@@ -42,8 +42,6 @@ void SPEEEduino_LowLevel::rawInput(String input) {
 
 /*!
  * Opens the serial link from the SPEEEduino to the ESP-01 module
- *
- * @param debug Whether to enable debugging mode (i.e. logging to serial monitor), defaults to false
  */
 void SPEEEduino_LowLevel::openLink() {
     if (SPEEEduino_LowLevel::debug) {
@@ -184,13 +182,14 @@ int16_t SPEEEduino_LowLevel::getLocalIP() {
 }
 
 /*!
- * Sets the DHCP to be enabled or disabled for both station and softAP modes
+ * Sets the DHCP to be enabled or disabled for both station and softAP modes. This
  *
+ * @warning This function is only for station mode only!
  * @param enabled Whether or not to enable the DHCP server/client
  * @return 0 if successfully set DHCP mode, -1 if it timed out
  */
 int16_t SPEEEduino_LowLevel::setDHCPEnabled(bool enabled) {
-    String command = "AT+CWDHCP_DEF=2,";
+    String command = "AT+CWDHCP_DEF=1,";
     command += enabled ? 1 : 0;
     command += "\r\n";
     _ESP01.print(command);
@@ -238,7 +237,7 @@ int16_t SPEEEduino_LowLevel::setConnectionAmount(ConnectionAmount amount) {
 int16_t SPEEEduino_LowLevel::beginSingleConnection(ConnectionType type, String remoteIP, String remotePort) {
     String command = "AT+CIPSTART=\"";
     command += ConnectionTypeStrings[type];
-    command += ",\"";
+    command += "\",\"";
     command += remoteIP;
     command += "\",";
     command += remotePort;
@@ -274,11 +273,122 @@ int16_t SPEEEduino_LowLevel::sendDataSingleConnection(String data) {
     return 0;
 }
 
-void SPEEEduino_LowLevel::receiveDataSingleConnection() {
-    while(true)
-        while (_ESP01.available())
-            Serial.write(_ESP01.read());
+String SPEEEduino_LowLevel::receiveDataSingleConnection() {
+    String dataReceived = "";
+    
+    // Read for "+IPD,<byte count>,<bytes>"
+    int16_t state = waitNoOutput("+IPD,", 20000);
+    if (state == 0) {
+        // Received "+IPD,", start logging down the byte count until the next ',' character
+        String byteCountString = "";
+        // Delay until the device starts sending data
+        _ESP01.flush();
+        uint16_t counter = 0;
+        while (!_ESP01.available() && counter < 10000) {
+            counter += 50;
+            delay(50);
+        }
+
+        uint16_t byteCount = uint16_t(byteCountString.toInt());
+        uint16_t readByteCount = 0;
+        bool dataStartFlag = false;
+
+        while (_ESP01.available()) {
+            char receivedCharacter = _ESP01.read();
+//            Serial.print("Read character: ");
+//            Serial.println(receivedCharacter);
+            if (receivedCharacter == ':' || dataStartFlag) {
+                // Received ':' character, end bit length receive, start receiving data
+                if (!dataStartFlag) {
+                    dataStartFlag = true; //this latches the while loop to only use the first if case
+                } else {
+                    readByteCount++;
+                    dataReceived += receivedCharacter;
+                    if (readByteCount >= byteCount) {
+                        // Exit
+                        break;
+                    }
+                }
+            } else {
+                byteCountString += receivedCharacter;
+            }
+        }
+
+//        counter = 0; //reset counter
+//        while (!_ESP01.available() && counter < 10000) {
+//            counter += 50;
+//            delay(50);
+//        }
+
+//        while (_ESP01.available()) {
+//            char receivedCharacter = _ESP01.read();
+//            readByteCount++;
+//            dataReceived += receivedCharacter;
+//            if (readByteCount >= byteCount) {
+//                // Exit
+//                break;
+//            }
+//        }
+    } else {
+        //TODO: Handle timeout here
+        return "Timed out!!";
+    }
+    return dataReceived;
+//    while(true)
+//        while (_ESP01.available())
+//            Serial.write(_ESP01.read());
+//    return "";
 }
+
+/*
+ For reference, this is how the response will look like
+
+ +IPD,1400:HTTP/1.1 200 OK
+ Date: Thu, 13 Jul 2017 02:32:11 GMT
+ Server:
+ Last-Modified: Tue, 24 Jan 2017 12:08:38 GMT
+ ETag: "4e9-546d5f9ec2154"
+ Accept-Ranges: bytes
+ Content-Length: 1257
+ Vary: Accept-Encoding
+ Content-Type: text/plain
+
+ ___  __        __     ___  __          __        __  ___  __     ___  __
+ |__  /  \ |  | |__) | |__  |__) | |\ | |  \ |  | /__`  |  |__) | |__  /__`
+ |    \__/ \__/ |  \ | |___ |  \ | | \| |__/ \__/ .__/  |  |  \ | |___ .__/
+
+ ===========================================================================
+
+ FourierIndustries Retro Homesite, version 0.1alpha
+
+ Our People:
+
+ CEO: Christopher Kok
+ CTO: Pan Ziyue (yeah, the guy that made this stupid thing)
+ COO/CFO: Liaw Xiao Tao
+ CDO: Dalton Ng
+ Senior Engineer and Technical Consultant: Ignis Incendio
+
+ This website is still WIP.
+
+ Goal of this website:
+ This website is intended to be accessed from devices with tiny throughput
+ and tiny buffers, such as very small embedded devices. This website is
+ designed to be easily displayed on a terminal or serial monitor
+
+ Why?
+ This is a revival of the telnets of yesteryear, in an easter egg fashion.
+ Most of us here are born at the turn of the millenium (so that makes us
+ millenials), but a lot of us here still do strongly miss the old days.
+ Large UNIX based mainframes, RS-232 interfaced dumb terminals. This is
+ a slice of a bygone era. Enjoy your stay
+
+ ========
+ +IPD,60:============================================================
+ +IPD,30:=======
+ Connection terminated
+ CLOSED
+ */
 
 /*!
  * Closes the current connection
@@ -349,7 +459,56 @@ int16_t SPEEEduino_LowLevel::wait(char* values, uint16_t timeOut) {
     while (millis() - timer < timeOut) {
         while (_ESP01.available()) {
             c = _ESP01.read();
-            Serial.print(c);
+            if (debug) {
+                Serial.print(c);
+            }
+            for (int16_t n = 0; n < tokenQuantity; n++) {
+                length = strlen(compareTokens[n]);
+                if (c == inputTokens[n][length])
+                    compareTokens[n][length] = c;
+                else if (length > 0)
+                    memset(compareTokens[n], 0, length);
+                if (!strcmp(inputTokens[n], compareTokens[n]))
+                    return n;
+            }
+        }
+    }
+    return -1;
+}
+
+int16_t SPEEEduino_LowLevel::waitNoOutput(char* values, uint16_t timeOut) {
+    if(!values)
+        return -1;
+    uint16_t length = strlen(values);
+    char InputBuffer[length + 1];
+    strcpy(InputBuffer, values);
+    char CompareBuffer[length + 1];
+    memset(CompareBuffer, 0, sizeof(CompareBuffer));
+    uint16_t tokenQuantity = 1;
+    for (int16_t n = 0; n < length; n++) {
+        if (InputBuffer[n] == ';')
+            tokenQuantity++;
+    }
+    char* inputTokens[tokenQuantity];
+    memset(inputTokens, 0, sizeof(inputTokens));
+    char* compareTokens[tokenQuantity];
+    memset(compareTokens, 0, sizeof(compareTokens));
+    inputTokens[0] = InputBuffer;
+    compareTokens[0] = CompareBuffer;
+    uint16_t TokenPosition = 1;
+    for (int16_t n = 0; n < length; n++) {
+        if (InputBuffer[n] == ';') {
+            InputBuffer[n] = 0;
+            inputTokens[TokenPosition] = &InputBuffer[n + 1];
+            compareTokens[TokenPosition] = &CompareBuffer[n + 1];
+            TokenPosition++;
+        }
+    }
+    uint64_t timer = millis();
+    char c;
+    while (millis() - timer < timeOut) {
+        while (_ESP01.available()) {
+            c = _ESP01.read();
             for (int16_t n = 0; n < tokenQuantity; n++) {
                 length = strlen(compareTokens[n]);
                 if (c == inputTokens[n][length])

@@ -69,11 +69,12 @@ public:
     int16_t setConnectionAmount(ConnectionAmount amount);
     int16_t beginSingleConnection(ConnectionType type, String remoteIP, String remotePort);
     int16_t sendDataSingleConnection(String data);
-    void receiveDataSingleConnection();
+    String receiveDataSingleConnection();
     int16_t endConnection(int8_t linkID = -1);
     int16_t setSSLBufferSize(uint16_t bufferSize);
 
     int16_t wait(char* values, uint16_t timeOut);
+    int16_t waitNoOutput(char* values, uint16_t timeOut);
 private:
     SoftwareSerial _ESP01;
     bool debug;
