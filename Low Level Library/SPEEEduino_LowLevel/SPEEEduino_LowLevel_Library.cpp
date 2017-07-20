@@ -18,12 +18,23 @@
 
 
 #include "SPEEEduino_LowLevel_Library.h"
+#include <avr/pgmspace.h>
 
-SPEEEduino_LowLevel::SPEEEduino_LowLevel(bool debugMode=false) : _ESP01(2, 4) {
+#pragma mark Constants stored in program memory
+
+const char NEWLINE[] PROGMEM = "\r\n";
+const char AT[] PROGMEM = "AT\r\n";
+const char AT_GMR[] PROGMEM = "AT+GMR\r\n";
+const char AT_RST[] PROGMEM = "AT+RST\r\n";
+const char AT_CIPSTART[] PROGMEM = "AT+CIPSTART=\"";
+
+#pragma mark - Constructor
+
+SPEEEduino_LowLevel::SPEEEduino_LowLevel(bool debugMode=false) : _ESP01UART(2, 4) {
     SPEEEduino_LowLevel::debug = debugMode;
 }
 
-#pragma mark Public functions
+#pragma mark - Public functions
 
 #pragma mark - Low level features
 
@@ -34,8 +45,8 @@ SPEEEduino_LowLevel::SPEEEduino_LowLevel(bool debugMode=false) : _ESP01(2, 4) {
  * @param input Your input into the ESP8266 module
  */
 void SPEEEduino_LowLevel::rawInput(String input) {
-    input += "\r\n";
-    _ESP01.print(input);
+    _ESP01UART.print(input);
+    writeCommandFromPROGMEM(NEWLINE);
 }
 
 #pragma mark - Serial link functions
@@ -47,7 +58,7 @@ void SPEEEduino_LowLevel::openLink() {
     if (SPEEEduino_LowLevel::debug) {
         Serial.begin(9600);
     }
-    _ESP01.begin(9600);
+    _ESP01UART.begin(9600);
 }
 
 /*!
@@ -60,7 +71,7 @@ void SPEEEduino_LowLevel::slowOpenLink(int delayTime=5000) {
         Serial.begin(9600);
     }
     delay(delayTime);
-    _ESP01.begin(9600);
+    _ESP01UART.begin(9600);
 }
 
 #pragma mark - Basic functions
@@ -71,7 +82,7 @@ void SPEEEduino_LowLevel::slowOpenLink(int delayTime=5000) {
  * @return 0, if the test is successful and -1 if the test times out
  */
 int16_t SPEEEduino_LowLevel::smokeTest() {
-    _ESP01.print("AT\r\n");
+    writeCommandFromPROGMEM(AT);
     return wait("OK", 2000);
 }
 
@@ -82,7 +93,7 @@ int16_t SPEEEduino_LowLevel::smokeTest() {
  * @return 0, if it responds and -1 if it times out
  */
 int16_t SPEEEduino_LowLevel::listVersion() {
-    _ESP01.print("AT+GMR\r\n");
+    writeCommandFromPROGMEM(AT_GMR);
     return wait("OK", 5000);
 }
 
@@ -92,7 +103,7 @@ int16_t SPEEEduino_LowLevel::listVersion() {
  * @return 0, if it successfully resets and -1 if it times out
  */
 int16_t SPEEEduino_LowLevel::reset() {
-    _ESP01.print("AT+RST\r\n");
+    writeCommandFromPROGMEM(AT_RST);
     return wait("OK", 5000);
 }
 
@@ -108,7 +119,7 @@ int16_t SPEEEduino_LowLevel::beginDeepSleep(const uint16_t sleepTime, const bool
     String command = "AT+GSLP=";
     command += String(sleepTime);
     command += "\r\n";
-    _ESP01.print(command);
+    _ESP01UART.print(command);
     if (blocking) {
         return wait("OK", sleepTime + 100);
     }
@@ -128,7 +139,7 @@ int16_t SPEEEduino_LowLevel::setWiFiMode(WiFiMode mode) {
     String command = "AT+CWMODE_DEF=";
     command += String(mode);
     command += "\r\n";
-    _ESP01.print(command);
+    _ESP01UART.print(command);
     return wait("OK", 5000);
 }
 
@@ -138,7 +149,7 @@ int16_t SPEEEduino_LowLevel::setWiFiMode(WiFiMode mode) {
  * @return 0 if successfully listed all the access points, -1 if the request timed out
  */
 int16_t SPEEEduino_LowLevel::listAP() {
-    _ESP01.print("AT+CWLAP\r\n");
+    _ESP01UART.print("AT+CWLAP\r\n");
     return wait("OK", 10000);
 }
 
@@ -155,7 +166,7 @@ int16_t SPEEEduino_LowLevel::joinAP(String ssid, String password) {
     command += "\",\"";
     command += password;
     command += "\"\r\n";
-    _ESP01.print(command);
+    _ESP01UART.print(command);
     return wait("OK;FAIL",30000);
 }
 
@@ -166,7 +177,7 @@ int16_t SPEEEduino_LowLevel::joinAP(String ssid, String password) {
  */
 int16_t SPEEEduino_LowLevel::disconnectAP() {
     String command = "AT+CWQAP\r\n";
-    _ESP01.print(command);
+    _ESP01UART.print(command);
     return wait("OK;FAIL",5000);
 }
 
@@ -177,7 +188,7 @@ int16_t SPEEEduino_LowLevel::disconnectAP() {
  * @return 0, if it successfully returns the IP address and -1 if it times out
  */
 int16_t SPEEEduino_LowLevel::getLocalIP() {
-    _ESP01.print("AT+CIFSR\r\n");
+    _ESP01UART.print("AT+CIFSR\r\n");
     return wait("OK",5000);
 }
 
@@ -192,7 +203,7 @@ int16_t SPEEEduino_LowLevel::setDHCPEnabled(bool enabled) {
     String command = "AT+CWDHCP_DEF=1,";
     command += enabled ? 1 : 0;
     command += "\r\n";
-    _ESP01.print(command);
+    _ESP01UART.print(command);
     return wait("OK", 5000);
 }
 
@@ -206,7 +217,7 @@ int16_t SPEEEduino_LowLevel::setStationName(String name) {
     String command = "AT+CWHOSTNAME=";
     command += name;
     command += "\r\n";
-    _ESP01.print(command);
+    _ESP01UART.print(command);
     return wait("OK;FAIL", 5000);
 }
 
@@ -222,7 +233,7 @@ int16_t SPEEEduino_LowLevel::setConnectionAmount(ConnectionAmount amount) {
     String command = "AT+CIPMUX=";
     command += String(amount);
     command += "\r\n";
-    _ESP01.print(command);
+    _ESP01UART.print(command);
     return wait("OK;FAIL", 5000);
 }
 
@@ -235,14 +246,14 @@ int16_t SPEEEduino_LowLevel::setConnectionAmount(ConnectionAmount amount) {
  * @return 0 if successfully established connection, 1 if there's an error with the connection, 2 if the connection socket is in use, and -1 if the command timed out
  */
 int16_t SPEEEduino_LowLevel::beginSingleConnection(ConnectionType type, String remoteIP, String remotePort) {
-    String command = "AT+CIPSTART=\"";
-    command += ConnectionTypeStrings[type];
-    command += "\",\"";
-    command += remoteIP;
-    command += "\",";
-    command += remotePort;
-    command += "\r\n";
-    _ESP01.print(command);
+    writeCommandFromPROGMEM(AT_CIPSTART);
+    String arguments = ConnectionTypeStrings[type];
+    arguments += "\",\"";
+    arguments += remoteIP;
+    arguments += "\",";
+    arguments += remotePort;
+    arguments += "\r\n";
+    _ESP01UART.print(arguments);
     return wait("OK;ERROR;ALREADY CONNECT", 15000);
 }
 
@@ -258,14 +269,14 @@ int16_t SPEEEduino_LowLevel::sendDataSingleConnection(String data) {
     String command = "AT+CIPSEND=";
     command += String(data.length());
     command += "\r\n";
-    _ESP01.print(command);
+    _ESP01UART.print(command);
     int16_t waitResult = wait(">;ERROR", 15000); //0, 1 for error, -1 for timeout
     if (waitResult != 0) {
         return waitResult;
     }
 
     // Start sending data, since the cursor appeared
-    _ESP01.print(data);
+    _ESP01UART.print(data);
     waitResult = wait("OK;ERROR", 15000);
     if (waitResult != 0) {
         return waitResult == -1 ? -2 : 2; // Map -1 to -2, everything else to 2
@@ -273,70 +284,72 @@ int16_t SPEEEduino_LowLevel::sendDataSingleConnection(String data) {
     return 0;
 }
 
-String SPEEEduino_LowLevel::receiveDataSingleConnection() {
+String SPEEEduino_LowLevel::receiveDataSingleConnection(uint32_t timeOut=20000) {
     String dataReceived = "";
-    
-    // Read for "+IPD,<byte count>,<bytes>"
-    int16_t state = waitNoOutput("+IPD,", 20000);
+    dataReceived.reserve(1024);
+
+    bool firstRoundCompleted = false;
+
+    // Wait for "+IPD,<byte count>,<bytes>" or CLOSED
+waitIPD:
+    int16_t state = waitNoOutput("+IPD,;CLOSED", timeOut);
     if (state == 0) {
         // Received "+IPD,", start logging down the byte count until the next ',' character
         String byteCountString = "";
-        // Delay until the device starts sending data
-        _ESP01.flush();
         uint16_t counter = 0;
-        while (!_ESP01.available() && counter < 10000) {
-            counter += 50;
-            delay(50);
-        }
 
-        uint16_t byteCount = uint16_t(byteCountString.toInt());
-        uint16_t readByteCount = 0;
-        bool dataStartFlag = false;
+        bool dataStartFlag = false; // True if the program is currently reading data, false if the program is still reading the byte count between "+IPD," and ":"
 
-        while (_ESP01.available()) {
-            char receivedCharacter = _ESP01.read();
-//            Serial.print("Read character: ");
-//            Serial.println(receivedCharacter);
-            if (receivedCharacter == ':' || dataStartFlag) {
-                // Received ':' character, end bit length receive, start receiving data
-                if (!dataStartFlag) {
-                    dataStartFlag = true; //this latches the while loop to only use the first if case
+        uint32_t timer = millis();
+        while (millis() - timer < 1000) { // 1 second timeout, because +IPD should IMMEDIATELY return byte count
+            while (_ESP01UART.available()) {
+                char c = _ESP01UART.read();
+                if (c == ':') {
+                    // Immediately break out of both loops
+                    goto readData;
                 } else {
-                    readByteCount++;
-                    dataReceived += receivedCharacter;
-                    if (readByteCount >= byteCount) {
-                        // Exit
-                        break;
-                    }
+                    byteCountString += c;
                 }
-            } else {
-                byteCountString += receivedCharacter;
             }
         }
 
-//        counter = 0; //reset counter
-//        while (!_ESP01.available() && counter < 10000) {
-//            counter += 50;
-//            delay(50);
-//        }
+    readData:
+        uint16_t byteCount = uint16_t(byteCountString.toInt()); // The amount of bytes to expect
+        uint16_t readByteCount = 0; // The amount of bytes that the Arduino side already read, should never exceed byteCount
 
-//        while (_ESP01.available()) {
-//            char receivedCharacter = _ESP01.read();
-//            readByteCount++;
-//            dataReceived += receivedCharacter;
-//            if (readByteCount >= byteCount) {
-//                // Exit
-//                break;
-//            }
-//        }
+        timer = millis();
+        while (millis() - timer < 20000 && readByteCount < byteCount) { // Delay failsafe if one character gets missed out
+            while (_ESP01UART.available()) {
+//                if (debug) {
+//                    Serial.println(readByteCount + " bytes read");
+//                }
+                dataReceived += char(_ESP01UART.read());
+                readByteCount++;
+            }
+        }
+
+        // Go back to the start to wait for another +IPD signal
+        firstRoundCompleted = true;
+        goto waitIPD;
     } else {
-        //TODO: Handle timeout here
-        return "Timed out!!";
+        // Handle timeout or connection closed
+        if (state == 1) {
+            // Connection closed
+            if (debug) {
+                Serial.println("Connection closed");
+            }
+            return dataReceived;
+        }
+        if (firstRoundCompleted) {
+            // If the first round has completed and second round times out
+            return dataReceived;
+        }
+        return "[TIMEOUT]";
     }
-    return dataReceived;
+
 //    while(true)
-//        while (_ESP01.available())
-//            Serial.write(_ESP01.read());
+//        while (_ESP01UART.available())
+//            Serial.write(_ESP01UART.read());
 //    return "";
 }
 
@@ -353,7 +366,7 @@ String SPEEEduino_LowLevel::receiveDataSingleConnection() {
  Vary: Accept-Encoding
  Content-Type: text/plain
 
- ___  __        __     ___  __          __        __  ___  __     ___  __
+  ___  __        __     ___  __          __        __  ___  __     ___  __
  |__  /  \ |  | |__) | |__  |__) | |\ | |  \ |  | /__`  |  |__) | |__  /__`
  |    \__/ \__/ |  \ | |___ |  \ | | \| |__/ \__/ .__/  |  |  \ | |___ .__/
 
@@ -403,7 +416,7 @@ int16_t SPEEEduino_LowLevel::endConnection(int8_t linkID = -1) {
         command += String(linkID);
     }
     command += "\r\n";
-    _ESP01.print(command);
+    _ESP01UART.print(command);
     return wait("OK;FAIL", 5000);
 }
 
@@ -420,11 +433,23 @@ int16_t SPEEEduino_LowLevel::setSSLBufferSize(uint16_t bufferSize) {
     }
     command += String(bufferSize);
     command += "\r\n";
-    _ESP01.print(command);
+    _ESP01UART.print(command);
     return wait("OK;ERROR", 5000);
 }
 
 #pragma mark - Helper functions
+
+/*!
+ Writes a command from PROGMEM to the ESP8266's serial ports
+ 
+ @param text The constant from PROGMEM to write to the ESP8266 module
+ */
+void SPEEEduino_LowLevel::writeCommandFromPROGMEM(const char* text) {
+    char buf[16] = {'\0'};
+    strcpy_P(buf, (char *) text);
+    //_ESP01UART->print(buf);
+    _ESP01UART.print(buf);
+}
 
 int16_t SPEEEduino_LowLevel::wait(char* values, uint16_t timeOut) {
     if(!values)
@@ -457,8 +482,8 @@ int16_t SPEEEduino_LowLevel::wait(char* values, uint16_t timeOut) {
     uint64_t timer = millis();
     char c;
     while (millis() - timer < timeOut) {
-        while (_ESP01.available()) {
-            c = _ESP01.read();
+        while (_ESP01UART.available()) {
+            c = _ESP01UART.read();
             if (debug) {
                 Serial.print(c);
             }
@@ -507,8 +532,8 @@ int16_t SPEEEduino_LowLevel::waitNoOutput(char* values, uint16_t timeOut) {
     uint64_t timer = millis();
     char c;
     while (millis() - timer < timeOut) {
-        while (_ESP01.available()) {
-            c = _ESP01.read();
+        while (_ESP01UART.available()) {
+            c = _ESP01UART.read();
             for (int16_t n = 0; n < tokenQuantity; n++) {
                 length = strlen(compareTokens[n]);
                 if (c == inputTokens[n][length])

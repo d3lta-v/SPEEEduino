@@ -69,14 +69,15 @@ public:
     int16_t setConnectionAmount(ConnectionAmount amount);
     int16_t beginSingleConnection(ConnectionType type, String remoteIP, String remotePort);
     int16_t sendDataSingleConnection(String data);
-    String receiveDataSingleConnection();
+    String receiveDataSingleConnection(uint32_t timeOut=20000);
     int16_t endConnection(int8_t linkID = -1);
     int16_t setSSLBufferSize(uint16_t bufferSize);
 
+    void writeCommandFromPROGMEM(const char* text);
     int16_t wait(char* values, uint16_t timeOut);
     int16_t waitNoOutput(char* values, uint16_t timeOut);
 private:
-    SoftwareSerial _ESP01;
+    SoftwareSerial _ESP01UART;
     bool debug;
 };
 

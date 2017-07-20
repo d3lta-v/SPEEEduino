@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		222E63FD1F1118D700EFE182 /* SPEEEduino_LowLevel_Library.h in Sources */ = {isa = PBXBuildFile; fileRef = 22EE63FD1F1118D700EFE182 /* SPEEEduino_LowLevel_Library.h */; };
 		222E64001F1118D700EFE182 /* SPEEEduino_LowLevel.ino in Sources */ = {isa = PBXBuildFile; fileRef = 22EE64001F1118D700EFE182 /* SPEEEduino_LowLevel.ino */; };
+		22BBD0B51F20F06C00F588DC /* SerialESP8266wifi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22521CB91F1CBC5700F7BE37 /* SerialESP8266wifi.cpp */; };
 		22EE63B31F1118D700EFE182 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22EE63B21F1118D700EFE182 /* main.cpp */; };
 		22EE63FF1F1118D700EFE182 /* SPEEEduino_LowLevel_Library.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22EE63FE1F1118D700EFE182 /* SPEEEduino_LowLevel_Library.cpp */; };
 		AA2A170708214343AA000005 /* abi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAAA170708214343AA000005 /* abi.cpp */; };
@@ -430,6 +431,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		22521CB91F1CBC5700F7BE37 /* SerialESP8266wifi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SerialESP8266wifi.cpp; sourceTree = "<group>"; };
+		22521CBA1F1CBC5700F7BE37 /* SerialESP8266wifi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerialESP8266wifi.h; sourceTree = "<group>"; };
 		2299A1481F14EFE40011159F /* keywords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = keywords.txt; sourceTree = "<group>"; };
 		22EE63AF1F1118D700EFE182 /* Index */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Index; sourceTree = BUILT_PRODUCTS_DIR; };
 		22EE63B21F1118D700EFE182 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -947,6 +950,8 @@
 				2299A1481F14EFE40011159F /* keywords.txt */,
 				22EE63FD1F1118D700EFE182 /* SPEEEduino_LowLevel_Library.h */,
 				22EE63FE1F1118D700EFE182 /* SPEEEduino_LowLevel_Library.cpp */,
+				22521CBA1F1CBC5700F7BE37 /* SerialESP8266wifi.h */,
+				22521CB91F1CBC5700F7BE37 /* SerialESP8266wifi.cpp */,
 				22EE64001F1118D700EFE182 /* SPEEEduino_LowLevel.ino */,
 				22EE63B71F1118D700EFE182 /* Sketchbook */,
 				AAAA170708214343AA000000 /* Resources */,
@@ -2337,6 +2342,7 @@
 				AA2A170708214343AA000048 /* pins_arduino.h in Sources */,
 				AA2A170708214343AA00004A /* pins_arduino.h in Sources */,
 				AA2A170708214343AA00004C /* pins_arduino.h in Sources */,
+				22BBD0B51F20F06C00F588DC /* SerialESP8266wifi.cpp in Sources */,
 				AA2A170708214343AA00004E /* pins_arduino.h in Sources */,
 				AA2A170708214343AA000050 /* pins_arduino.h in Sources */,
 				AA2A170708214343AA000052 /* pins_arduino.h in Sources */,
