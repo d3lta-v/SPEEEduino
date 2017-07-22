@@ -22,11 +22,21 @@
 
 #pragma mark Constants stored in program memory
 
+#pragma mark Very basic commands
 const char NEWLINE[] PROGMEM = "\r\n";
 const char AT[] PROGMEM = "AT\r\n";
+
+#pragma mark Basic commands
 const char AT_GMR[] PROGMEM = "AT+GMR\r\n";
 const char AT_RST[] PROGMEM = "AT+RST\r\n";
+
+#pragma mark Wi-Fi commands
+const char AT_CWLAP[] PROGMEM = "AT+CWLAP\r\n";
+const char AT_CIFSR[] PROGMEM = "AT+CIFSR\r\n";
+
+#pragma mark Connection commands
 const char AT_CIPSTART[] PROGMEM = "AT+CIPSTART=\"";
+const char AT_CIPSAP[] PROGMEM = "AT+CWSAP_DEF=";
 
 #pragma mark - Constructor
 
@@ -115,11 +125,11 @@ int16_t SPEEEduino_LowLevel::reset() {
  * @param blocking Whether or not to block the SPEEEduino's MCU using the wait() function
  * @return 0, if it successfully sleeps and recovers and -1 if it times out (when blocking=true), and always 0 if blocking = false
  */
-int16_t SPEEEduino_LowLevel::beginDeepSleep(const uint16_t sleepTime, const bool blocking) {
+int16_t SPEEEduino_LowLevel::beginDeepSleep(uint16_t sleepTime, bool blocking) {
     String command = "AT+GSLP=";
-    command += String(sleepTime);
-    command += "\r\n";
+    command += sleepTime;
     _ESP01UART.print(command);
+    writeCommandFromPROGMEM(NEWLINE);
     if (blocking) {
         return wait("OK", sleepTime + 100);
     }
@@ -137,9 +147,9 @@ int16_t SPEEEduino_LowLevel::beginDeepSleep(const uint16_t sleepTime, const bool
  */
 int16_t SPEEEduino_LowLevel::setWiFiMode(WiFiMode mode) {
     String command = "AT+CWMODE_DEF=";
-    command += String(mode);
-    command += "\r\n";
+    command += uint8_t(mode);
     _ESP01UART.print(command);
+    writeCommandFromPROGMEM(NEWLINE);
     return wait("OK", 5000);
 }
 
@@ -149,7 +159,7 @@ int16_t SPEEEduino_LowLevel::setWiFiMode(WiFiMode mode) {
  * @return 0 if successfully listed all the access points, -1 if the request timed out
  */
 int16_t SPEEEduino_LowLevel::listAP() {
-    _ESP01UART.print("AT+CWLAP\r\n");
+    writeCommandFromPROGMEM(AT_CWLAP);
     return wait("OK", 10000);
 }
 
@@ -202,13 +212,13 @@ int16_t SPEEEduino_LowLevel::getLocalIP() {
 int16_t SPEEEduino_LowLevel::setDHCPEnabled(bool enabled) {
     String command = "AT+CWDHCP_DEF=1,";
     command += enabled ? 1 : 0;
-    command += "\r\n";
     _ESP01UART.print(command);
+    writeCommandFromPROGMEM(NEWLINE);
     return wait("OK", 5000);
 }
 
 /*!
- * Sets name of the ESP8266 station (client)
+ * Sets name of the ESP8266 client (in other words, when it's connected to a Wi-Fi hotspot)
  *
  * @param name The host name of the ESP8266 station that you want to set it to
  * @return 0 if successfully set the name of the station, 1 if the command failed, and -1 if the command timed out
@@ -216,12 +226,49 @@ int16_t SPEEEduino_LowLevel::setDHCPEnabled(bool enabled) {
 int16_t SPEEEduino_LowLevel::setStationName(String name) {
     String command = "AT+CWHOSTNAME=";
     command += name;
-    command += "\r\n";
     _ESP01UART.print(command);
+    writeCommandFromPROGMEM(NEWLINE);
     return wait("OK;FAIL", 5000);
 }
 
+/*!
+ * Sets the SoftAP's settings, such as the name of the hotspot, password and so on
+ *
+ * @param ssid The SSID or name of the hotspot being broadcasted
+ * @param password The password of the hotspot
+ * @param channel The Wi-Fi channel to broadcast on. Typically 1 to 14, prefer 1, 5, 9, 13 as they do not overlap
+ * @return 0 if successfully set the name of the station, 1 if the command failed, and -1 if the command timed out
+ */
+int16_t SPEEEduino_LowLevel::setSoftAPSettings(String ssid, String password, uint8_t channel, EncryptionMethod encryptionMethod) {
+    writeCommandFromPROGMEM(AT_CIPSAP);
+    String command = ssid;
+    command += ",";
+    command += password;
+    command += ",";
+    command += channel;
+    command += uint8_t(encryptionMethod);
+    _ESP01UART.print(command);
+    writeCommandFromPROGMEM(NEWLINE);
+}
+
 #pragma mark - TCP/IP commands
+
+/*!
+ * Starts a TCP server with a certain port
+ *
+ * @param createServer Whether to create or delete the server on the port.
+ * @param port The port to create the TCP server on
+ * @return 0 if the TCP server is initialised, 1 if the TCP server did not initialise, -1 if the command timed out
+ */
+int16_t SPEEEduino_LowLevel::beginTCPServer(TCPServer createServer, uint16_t port) {
+    String command = "AT+CIPSERVER=";
+    command += uint8_t(createServer);
+    command += ",";
+    command += port;
+    _ESP01UART.print(command);
+    writeCommandFromPROGMEM(NEWLINE);
+    return wait("OK;ERROR", 5000);
+}
 
 /*!
  * Sets the mode for the number of simultaneous connections allowed
@@ -231,9 +278,9 @@ int16_t SPEEEduino_LowLevel::setStationName(String name) {
  */
 int16_t SPEEEduino_LowLevel::setConnectionAmount(ConnectionAmount amount) {
     String command = "AT+CIPMUX=";
-    command += String(amount);
-    command += "\r\n";
+    command += uint8_t(amount);
     _ESP01UART.print(command);
+    writeCommandFromPROGMEM(NEWLINE);
     return wait("OK;FAIL", 5000);
 }
 
@@ -267,9 +314,9 @@ int16_t SPEEEduino_LowLevel::beginSingleConnection(ConnectionType type, String r
 int16_t SPEEEduino_LowLevel::sendDataSingleConnection(String data) {
     // Get data length first
     String command = "AT+CIPSEND=";
-    command += String(data.length());
-    command += "\r\n";
+    command += uint16_t(data.length());
     _ESP01UART.print(command);
+    writeCommandFromPROGMEM(NEWLINE);
     int16_t waitResult = wait(">;ERROR", 15000); //0, 1 for error, -1 for timeout
     if (waitResult != 0) {
         return waitResult;
@@ -284,7 +331,7 @@ int16_t SPEEEduino_LowLevel::sendDataSingleConnection(String data) {
     return 0;
 }
 
-String SPEEEduino_LowLevel::receiveDataSingleConnection(uint32_t timeOut=20000) {
+String SPEEEduino_LowLevel::receiveData(ConnectionAmount connectionAmount, uint32_t timeOut=20000) {
     String dataReceived = "";
     dataReceived.reserve(1024);
 
@@ -314,7 +361,24 @@ waitIPD:
         }
 
     readData:
-        uint16_t byteCount = uint16_t(byteCountString.toInt()); // The amount of bytes to expect
+        uint16_t byteCount = 0;
+
+//        String connectionID;
+
+        switch (connectionAmount) {
+            case SINGLE:
+                byteCount = uint16_t(byteCountString.toInt()); // The amount of bytes to expect
+                break;
+            case MULTIPLE:
+                for (int i = 0; i < byteCountString.length(); i++) {
+                    if (byteCountString.substring(i, i+1) == ",") {
+//                        connectionID = byteCountString.substring(0, i);
+                        byteCount = byteCountString.substring(i+1).toInt();
+                        break;
+                    }
+                }
+                break;
+        }
         uint16_t readByteCount = 0; // The amount of bytes that the Arduino side already read, should never exceed byteCount
 
         timer = millis();
@@ -344,7 +408,7 @@ waitIPD:
             // If the first round has completed and second round times out
             return dataReceived;
         }
-        return "[TIMEOUT]";
+        return "TIMEOUT";
     }
 
 //    while(true)
@@ -352,56 +416,6 @@ waitIPD:
 //            Serial.write(_ESP01UART.read());
 //    return "";
 }
-
-/*
- For reference, this is how the response will look like
-
- +IPD,1400:HTTP/1.1 200 OK
- Date: Thu, 13 Jul 2017 02:32:11 GMT
- Server:
- Last-Modified: Tue, 24 Jan 2017 12:08:38 GMT
- ETag: "4e9-546d5f9ec2154"
- Accept-Ranges: bytes
- Content-Length: 1257
- Vary: Accept-Encoding
- Content-Type: text/plain
-
-  ___  __        __     ___  __          __        __  ___  __     ___  __
- |__  /  \ |  | |__) | |__  |__) | |\ | |  \ |  | /__`  |  |__) | |__  /__`
- |    \__/ \__/ |  \ | |___ |  \ | | \| |__/ \__/ .__/  |  |  \ | |___ .__/
-
- ===========================================================================
-
- FourierIndustries Retro Homesite, version 0.1alpha
-
- Our People:
-
- CEO: Christopher Kok
- CTO: Pan Ziyue (yeah, the guy that made this stupid thing)
- COO/CFO: Liaw Xiao Tao
- CDO: Dalton Ng
- Senior Engineer and Technical Consultant: Ignis Incendio
-
- This website is still WIP.
-
- Goal of this website:
- This website is intended to be accessed from devices with tiny throughput
- and tiny buffers, such as very small embedded devices. This website is
- designed to be easily displayed on a terminal or serial monitor
-
- Why?
- This is a revival of the telnets of yesteryear, in an easter egg fashion.
- Most of us here are born at the turn of the millenium (so that makes us
- millenials), but a lot of us here still do strongly miss the old days.
- Large UNIX based mainframes, RS-232 interfaced dumb terminals. This is
- a slice of a bygone era. Enjoy your stay
-
- ========
- +IPD,60:============================================================
- +IPD,30:=======
- Connection terminated
- CLOSED
- */
 
 /*!
  * Closes the current connection
@@ -413,10 +427,10 @@ int16_t SPEEEduino_LowLevel::endConnection(int8_t linkID = -1) {
     String command = "AT+CIPCLOSE";
     if (linkID >= 0 && linkID <= 5) {
         command += "=";
-        command += String(linkID);
+        command += uint8_t(linkID);
     }
-    command += "\r\n";
     _ESP01UART.print(command);
+    writeCommandFromPROGMEM(NEWLINE);
     return wait("OK;FAIL", 5000);
 }
 
@@ -431,18 +445,18 @@ int16_t SPEEEduino_LowLevel::setSSLBufferSize(uint16_t bufferSize) {
     if (bufferSize < 2048 || bufferSize > 4096) {
         return 2;
     }
-    command += String(bufferSize);
-    command += "\r\n";
+    command += bufferSize;
     _ESP01UART.print(command);
+    writeCommandFromPROGMEM(NEWLINE);
     return wait("OK;ERROR", 5000);
 }
 
 #pragma mark - Helper functions
 
 /*!
- Writes a command from PROGMEM to the ESP8266's serial ports
- 
- @param text The constant from PROGMEM to write to the ESP8266 module
+ * Writes a command from PROGMEM to the ESP8266's serial ports
+ *
+ * @param text The constant from PROGMEM to write to the ESP8266 module
  */
 void SPEEEduino_LowLevel::writeCommandFromPROGMEM(const char* text) {
     char buf[16] = {'\0'};
@@ -479,7 +493,7 @@ int16_t SPEEEduino_LowLevel::wait(char* values, uint16_t timeOut) {
             TokenPosition++;
         }
     }
-    uint64_t timer = millis();
+    uint32_t timer = millis();
     char c;
     while (millis() - timer < timeOut) {
         while (_ESP01UART.available()) {

@@ -44,6 +44,10 @@ enum ConnectionAmount { SINGLE=0, MULTIPLE }; // Use with CIPMUX
 enum ConnectionType { TCP, UDP, SSL }; // Use with CIPSTART
 static const char * ConnectionTypeStrings[] = { "TCP", "UDP", "SSL" };
 
+enum TCPServer { DELETE=0, CREATE };
+
+enum EncryptionMethod { OPEN=0, WPA_PSK, WPA2_PSK, WPA_WPA2_PSK };
+
 #pragma mark - Class declaration
 
 // Insert class headers here
@@ -56,7 +60,7 @@ public:
     int16_t smokeTest();
     int16_t listVersion();
     int16_t reset();
-    int16_t beginDeepSleep(const uint16_t sleepTime, const bool blocking);
+    int16_t beginDeepSleep(uint16_t sleepTime, bool blocking);
 
     int16_t setWiFiMode(WiFiMode mode);
     int16_t listAP();
@@ -65,19 +69,21 @@ public:
     int16_t getLocalIP();
     int16_t setDHCPEnabled(bool enabled);
     int16_t setStationName(String name);
+    int16_t setSoftAPSettings(String ssid, String password, uint8_t channel, EncryptionMethod encryptionMethod);
 
+    int16_t beginTCPServer(TCPServer createServer, uint16_t port);
     int16_t setConnectionAmount(ConnectionAmount amount);
     int16_t beginSingleConnection(ConnectionType type, String remoteIP, String remotePort);
     int16_t sendDataSingleConnection(String data);
-    String receiveDataSingleConnection(uint32_t timeOut=20000);
+    String receiveData(ConnectionAmount connectionAmount, uint32_t timeOut=20000);
     int16_t endConnection(int8_t linkID = -1);
     int16_t setSSLBufferSize(uint16_t bufferSize);
 
-    void writeCommandFromPROGMEM(const char* text);
     int16_t wait(char* values, uint16_t timeOut);
-    int16_t waitNoOutput(char* values, uint16_t timeOut);
 private:
     SoftwareSerial _ESP01UART;
+    void writeCommandFromPROGMEM(const char* text);
+    int16_t waitNoOutput(char* values, uint16_t timeOut);
     bool debug;
 };
 
