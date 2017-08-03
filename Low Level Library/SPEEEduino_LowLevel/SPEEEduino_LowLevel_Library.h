@@ -35,7 +35,7 @@
 
 #include <SoftwareSerial.h>
 
-#pragma mark - Enumerations
+#pragma mark - Enumerations and structs
 
 enum WiFiMode { STATION=1, AP, BOTH }; // Use with CWMODE
 
@@ -47,6 +47,11 @@ static const char * ConnectionTypeStrings[] = { "TCP", "UDP", "SSL" };
 enum TCPServer { DELETE=0, CREATE };
 
 enum EncryptionMethod { OPEN=0, WPA_PSK, WPA2_PSK, WPA_WPA2_PSK };
+
+struct ReturnedData {
+    uint8_t linkID = -1;
+    String content = "";
+};
 
 #pragma mark - Class declaration
 
@@ -75,7 +80,7 @@ public:
     int16_t setConnectionAmount(ConnectionAmount amount);
     int16_t beginSingleConnection(ConnectionType type, String remoteIP, String remotePort);
     int16_t sendDataSingleConnection(String data);
-    String receiveData(ConnectionAmount connectionAmount, uint32_t timeOut=20000);
+    ReturnedData receiveData(ConnectionAmount connectionAmount, uint32_t timeOut=20000);
     int16_t endConnection(int8_t linkID = -1);
     int16_t setSSLBufferSize(uint16_t bufferSize);
 

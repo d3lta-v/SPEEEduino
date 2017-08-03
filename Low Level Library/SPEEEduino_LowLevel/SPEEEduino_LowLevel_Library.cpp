@@ -331,15 +331,23 @@ int16_t SPEEEduino_LowLevel::sendDataSingleConnection(String data) {
     return 0;
 }
 
-String SPEEEduino_LowLevel::receiveData(ConnectionAmount connectionAmount, uint32_t timeOut=20000) {
-    String dataReceived = "";
-    dataReceived.reserve(1024);
+/*!
+ * Waits for data with a timeout. This function is *only* suitable for
+ *
+ * @param connectionAmount SINGLE or MULTIPLE, depending on what did you start your ESP8266 module with
+ * @param timeOut Maximum time to wait for the response before the connection is considered to be timed out
+ * @return A ReturnedData struct containing the link ID (-1 if you're using single connection) and the returned data in the form of a String
+ */
+ReturnedData SPEEEduino_LowLevel::receiveData(ConnectionAmount connectionAmount, uint32_t timeOut=20000) {
+    ReturnedData returnedData;
+    returnedData.content = "";
+    returnedData.content.reserve(1024);
 
     bool firstRoundCompleted = false;
 
     // Wait for "+IPD,<byte count>,<bytes>" or CLOSED
 waitIPD:
-    int16_t state = waitNoOutput("+IPD,;CLOSED", timeOut);
+    int16_t state = waitNoOutput("+IPD,;CLOSED", firstRoundCompleted ? 500 : timeOut); //if first round already completed, don't wait for the full timeout because second round should be received quite fast
     if (state == 0) {
         // Received "+IPD,", start logging down the byte count until the next ',' character
         String byteCountString = "";
@@ -363,8 +371,6 @@ waitIPD:
     readData:
         uint16_t byteCount = 0;
 
-//        String connectionID;
-
         switch (connectionAmount) {
             case SINGLE:
                 byteCount = uint16_t(byteCountString.toInt()); // The amount of bytes to expect
@@ -372,7 +378,7 @@ waitIPD:
             case MULTIPLE:
                 for (int i = 0; i < byteCountString.length(); i++) {
                     if (byteCountString.substring(i, i+1) == ",") {
-//                        connectionID = byteCountString.substring(0, i);
+                        returnedData.linkID = byteCountString.substring(0, i).toInt();
                         byteCount = byteCountString.substring(i+1).toInt();
                         break;
                     }
@@ -384,10 +390,7 @@ waitIPD:
         timer = millis();
         while (millis() - timer < 20000 && readByteCount < byteCount) { // Delay failsafe if one character gets missed out
             while (_ESP01UART.available()) {
-//                if (debug) {
-//                    Serial.println(readByteCount + " bytes read");
-//                }
-                dataReceived += char(_ESP01UART.read());
+                returnedData.content += char(_ESP01UART.read());
                 readByteCount++;
             }
         }
@@ -402,13 +405,16 @@ waitIPD:
             if (debug) {
                 Serial.println("Connection closed");
             }
-            return dataReceived;
+            return returnedData;
         }
         if (firstRoundCompleted) {
             // If the first round has completed and second round times out
-            return dataReceived;
+            if (debug) {
+                Serial.println("Received one round of data, timed out");
+            }
+            return returnedData;
         }
-        return "TIMEOUT";
+        return returnedData;
     }
 
 //    while(true)
