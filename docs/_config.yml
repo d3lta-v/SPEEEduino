@@ -1,3 +1,4 @@
-markdown: kramdown
-kramdown:
-   auto_ids: true
+# markdown: kramdown
+# kramdown:
+#    auto_ids: true
+theme: jekyll-theme-cayman
