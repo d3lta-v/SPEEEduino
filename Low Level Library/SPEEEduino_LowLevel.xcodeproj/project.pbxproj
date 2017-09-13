@@ -925,6 +925,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		227AC4411F66CD6E001F2B09 /* examples */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = examples;
+			sourceTree = "<group>";
+		};
 		22EE63A31F1118D700EFE182 = {
 			isa = PBXGroup;
 			children = (
@@ -944,6 +951,7 @@
 		22EE63B11F1118D700EFE182 /* SPEEEduino_LowLevel */ = {
 			isa = PBXGroup;
 			children = (
+				227AC4411F66CD6E001F2B09 /* examples */,
 				22EE63B21F1118D700EFE182 /* main.cpp */,
 				22EE63B41F1118D700EFE182 /* Makefile */,
 				22EE63B61F1118D700EFE182 /* ReadMe.txt */,
