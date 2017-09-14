@@ -1,3 +1,12 @@
+/*
+  Retrieve_Webpage
+
+  This sample code retrieves a HTTP webpage
+
+  Copyright MakerFoundry LLP 2017
+  Licensed under Creative Commons 0 (CC0) license
+*/
+
 #include <SPEEEduino_LowLevel_Library.h>
 
 SPEEEduino_LowLevel device = SPEEEduino_LowLevel();
