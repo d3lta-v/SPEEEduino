@@ -34,6 +34,8 @@ const char AT_RST[] PROGMEM = "AT+RST\r\n";
 const char AT_CWLAP[] PROGMEM = "AT+CWLAP\r\n";
 const char AT_CIFSR[] PROGMEM = "AT+CIFSR\r\n";
 const char AT_CWQAP[] PROGMEM = "AT+CWQAP\r\n";
+const char AT_CWDHCP_DEF[] PROGMEM = "AT+CWDHCP_DEF=1,";
+const char AT_CWHOSTNAME[] PROGMEM = "AT+CWHOSTNAME=";
 
 #pragma mark Connection commands
 const char AT_CIPSTART[] PROGMEM = "AT+CIPSTART=\"";
@@ -208,9 +210,10 @@ int16_t SPEEEduino_LowLevel::getLocalIP() {
  * @return 0 if successfully set DHCP mode, -1 if it timed out
  */
 int16_t SPEEEduino_LowLevel::setDHCPEnabled(bool enabled) {
-    String command = "AT+CWDHCP_DEF=1,";
-    command += enabled ? 1 : 0;
-    _ESP01UART.print(command);
+    writeCommandFromPROGMEM(AT_CWDHCP_DEF);
+    char one = '1';
+    char zero = '0';
+    _ESP01UART.print(enabled ? one : zero);
     writeCommandFromPROGMEM(NEWLINE);
     return wait("OK", 5000);
 }
@@ -222,9 +225,8 @@ int16_t SPEEEduino_LowLevel::setDHCPEnabled(bool enabled) {
  * @return 0 if successfully set the name of the station, 1 if the command failed, and -1 if the command timed out
  */
 int16_t SPEEEduino_LowLevel::setStationName(String& name) {
-    String command = "AT+CWHOSTNAME=";
-    command += name;
-    _ESP01UART.print(command);
+    writeCommandFromPROGMEM(AT_CWHOSTNAME);
+    _ESP01UART.print(name);
     writeCommandFromPROGMEM(NEWLINE);
     return wait("OK;FAIL", 5000);
 }
@@ -364,8 +366,9 @@ int16_t SPEEEduino_LowLevel::sendDataMultipleConnection(String& data, uint8_t li
 }
 
 /*!
- * Waits for data with a timeout. This function is *only* suitable for
+ * Waits for data with a timeout.
  *
+ * @warning This function is a BLOCKING function, meaning that it will pause your program execution
  * @param connectionAmount SINGLE or MULTIPLE, depending on what did you start your ESP8266 module with
  * @param timeOut Maximum time to wait for the response before the connection is considered to be timed out
  * @return A ReturnedData struct containing the link ID (-1 if you're using single connection) and the returned data in the form of a String
@@ -433,14 +436,14 @@ waitIPD:
         if (state == 1) {
             // Connection closed
             if (debug) {
-                Serial.println("Connection closed");
+                Serial.println(F("Connection closed"));
             }
             return returnedData;
         }
         if (firstRoundCompleted) {
             // If the first round has completed and second round times out
             if (debug) {
-                Serial.println("Received one round of data, timed out");
+                Serial.println(F("Received one round of data, timed out"));
             }
             return returnedData;
         }
@@ -496,6 +499,14 @@ void SPEEEduino_LowLevel::writeCommandFromPROGMEM(const char* text) {
     _ESP01UART.print(buf);
 }
 
+/*!
+ * Waits for a certain serial input. This also prints out the serial data before hitting the correct case
+ * if debug mode is enabled.
+ *
+ * @param values Semicolon delimited expected C-style string
+ * @param timeOut Timeout in milliseconds
+ * @return -1 if timed out, 0, 1, 2, ... if the data matches one of the values in the values string
+ */
 int16_t SPEEEduino_LowLevel::wait(char* values, uint16_t timeOut) {
     if(!values)
         return -1;
