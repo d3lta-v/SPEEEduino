@@ -1,7 +1,7 @@
 /*
   IR_Sensor_ThingSpeak
 
-  This sample code counts the times an IR sensor is triggered
+  This sample code counts the times an IR sensor is toggled
   and pushes the data to ThingSpeak, an IoT platform.
 
   Copyright MakerFoundry LLP 2017
