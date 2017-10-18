@@ -28,6 +28,8 @@ APIKEY
 "FIELD1"
 "&field2="
 "FIELD2"
+"&field3="
+"FIELD3"
 " HTTP/1.1\r\n"
 "Host: api.thingspeak.com:80\r\n\r\n";
 
@@ -36,6 +38,7 @@ SPEEEduino_LowLevel device = SPEEEduino_LowLevel(true);
 /* Storage variables declaration */
 int ldrValue = 0;
 int temperature = 30;
+bool lightState = LOW;
 
 /* Main program */
 
@@ -58,8 +61,10 @@ void loop() {
     temperature = analogRead(TEMP_PIN) * 0.48828125;
     if (ldrValue > 850 || digitalRead(IR_PIN) == HIGH) {
       digitalWrite(LED_PIN, HIGH);
+      lightState = HIGH;
     } else {
       digitalWrite(LED_PIN, LOW);
+      lightState = LOW;
     }
   }
   // Send messsage, as timer finished running
@@ -67,10 +72,13 @@ void loop() {
   String realPayload = payload; // Make a copy of the original template
   char ldrValueString[6];
   char tempString[6];
+  char onOffString[3];
   itoa(ldrValue, ldrValueString, 10);
   itoa(temperature, tempString, 10);
+  itoa(lightState == HIGH ? 1 : 0, onOffString, 10);
   realPayload.replace("FIELD1", ldrValueString);
   realPayload.replace("FIELD2", tempString);
+  realPayload.replace("FIELD3", onOffString);
   device.sendDataSingleConnection(realPayload);
   Serial.println("Printing received data:");
   Serial.println(device.receiveData(SINGLE).content);
