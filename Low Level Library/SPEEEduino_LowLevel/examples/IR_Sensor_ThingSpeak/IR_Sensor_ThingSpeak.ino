@@ -13,7 +13,7 @@
 #define IRPIN 6
 #define APIKEY "YOUR THINGSPEAK API KEY HERE"
 
-const char* payload = 
+const char* payload =
 "GET /update?api_key="
 APIKEY
 "&field1="
@@ -32,7 +32,7 @@ void setup() {
   pinMode(IRPIN, INPUT);
 
   device.slowOpenLink();
-  device.setDHCPEnabled(true);
+  // device.setDHCPEnabled(true);
   device.setConnectionAmount(SINGLE);
   device.setWiFiMode(STATION);
 

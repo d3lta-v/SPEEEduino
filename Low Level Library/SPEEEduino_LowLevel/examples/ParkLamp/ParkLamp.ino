@@ -21,7 +21,7 @@
 #define APIKEY "YOUR THINGSPEAK API KEY HERE"
 
 /* Payload declaration */
-const char* payload = 
+const char* payload =
 "GET /update?api_key="
 APIKEY
 "&field1="
@@ -45,9 +45,9 @@ bool lightState = LOW;
 void setup() {
   pinMode(LED_PIN, OUTPUT);
   pinMode(IR_PIN, INPUT);
-  
+
   device.slowOpenLink();
-  device.setDHCPEnabled(true);
+  // device.setDHCPEnabled(true);
   device.setConnectionAmount(SINGLE);
   device.setWiFiMode(STATION);
 

@@ -16,7 +16,7 @@ String payload = "GET / HTTP/1.1\r\nHost: retro.fourier.industries:80\r\n\r\n";
 void setup() {
   Serial.begin(9600);
   device.slowOpenLink();
-  device.setDHCPEnabled(true);
+  // device.setDHCPEnabled(true);
   device.setConnectionAmount(SINGLE);
   device.setWiFiMode(STATION);
 

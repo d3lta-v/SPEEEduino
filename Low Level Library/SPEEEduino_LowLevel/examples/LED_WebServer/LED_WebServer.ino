@@ -12,7 +12,7 @@
 
 SPEEEduino_LowLevel device = SPEEEduino_LowLevel(true);
 
-String payload = 
+String payload =
 "HTTP/1.1 200 OK\r\n"
 "Content-Length: 175\r\n"
 "Connection: close\r\n\r\n"
@@ -29,7 +29,7 @@ void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
   
   device.slowOpenLink();
-  device.setDHCPEnabled(true);
+  // device.setDHCPEnabled(true);
   device.setConnectionAmount(MULTIPLE);
   device.setWiFiMode(STATION);
 
