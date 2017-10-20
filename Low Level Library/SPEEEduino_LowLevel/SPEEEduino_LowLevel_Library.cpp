@@ -36,6 +36,8 @@ const char AT_CIFSR[] PROGMEM = "AT+CIFSR\r\n";
 const char AT_CWQAP[] PROGMEM = "AT+CWQAP\r\n";
 const char AT_CWDHCP_DEF[] PROGMEM = "AT+CWDHCP_DEF=1,";
 const char AT_CWHOSTNAME[] PROGMEM = "AT+CWHOSTNAME=";
+const char AT_CIPSTA_CUR[] PROGMEM = "AT+CIPSTA_CUR=";
+const char AT_CIPSTA_DEF[] PROGMEM = "AT+CIPSTA_DEF=";
 
 #pragma mark Connection commands
 const char AT_CIPSTART[] PROGMEM = "AT+CIPSTART=\"";
@@ -249,6 +251,38 @@ int16_t SPEEEduino_LowLevel::setSoftAPSettings(String& ssid, String& password, u
     command += uint8_t(encryptionMethod);
     _ESP01UART.print(command);
     writeCommandFromPROGMEM(NEWLINE);
+}
+
+/*!
+ * Sets parameters for static IP allocation without DHCP.
+ *
+ * @warning You must turn DHCP off with setDHCPEnabled() first before setting the IP! This function has NOT been tested on a real device before!
+ *
+ * @param permanent Boolean to specify if the setting should be permanent or temporary
+ * @param ip The IP address to set
+ * @param gateway The address of the default gateway. Optional.
+ * @param netmask The subnet mask of the network. Optional.
+ * @return 0 if successfully set static IP, 1 if there's an issue, and -1 if it times out
+ */
+int16_t SPEEEduino_LowLevel::setIP(bool permanent, String ip, String gateway="", String netmask="") {
+    if (permanent) {
+        writeCommandFromPROGMEM(AT_CIPSTA_DEF);
+    } else {
+        writeCommandFromPROGMEM(AT_CIPSTA_CUR);
+    }
+    _ESP01UART.print('"');
+    _ESP01UART.print(ip);
+    _ESP01UART.print('"');
+    if (gateway.length() > 0 && netmask.length() > 0) {
+        // set gateway and mask
+        _ESP01UART.print(",\"");
+        _ESP01UART.print(gateway);
+        _ESP01UART.print('"');
+        _ESP01UART.print(",\"");
+        _ESP01UART.print(netmask);
+        _ESP01UART.print('"');
+    }
+    return wait("OK;ERROR", 5000);
 }
 
 #pragma mark - TCP/IP commands

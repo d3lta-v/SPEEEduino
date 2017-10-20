@@ -75,6 +75,7 @@ public:
     int16_t setDHCPEnabled(bool enabled);
     int16_t setStationName(String& name);
     int16_t setSoftAPSettings(String& ssid, String& password, uint8_t channel, EncryptionMethod encryptionMethod);
+    int16_t setIP(bool permanent, String ip, String gateway="", String netmask="");
 
     int16_t beginTCPServer(TCPServer createServer, uint16_t port);
     int16_t setConnectionAmount(ConnectionAmount amount);
