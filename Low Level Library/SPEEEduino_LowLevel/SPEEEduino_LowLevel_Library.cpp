@@ -282,6 +282,7 @@ int16_t SPEEEduino_LowLevel::setIP(bool permanent, String ip, String gateway="",
         _ESP01UART.print(netmask);
         _ESP01UART.print('"');
     }
+    writeCommandFromPROGMEM(NEWLINE);
     return wait("OK;ERROR", 5000);
 }
 
