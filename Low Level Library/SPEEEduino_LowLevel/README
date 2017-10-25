@@ -1,0 +1,2 @@
+The command to generate headerdoc (only available on Mac) when you are using this folder as the active working directory is:
+headerdoc2html -o ../../docs/librarydoc SPEEEduino_LowLevel_Library.cpp
