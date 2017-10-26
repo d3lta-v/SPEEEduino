@@ -434,7 +434,6 @@
 		22EE63AF1F1118D700EFE182 /* Index */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Index; sourceTree = BUILT_PRODUCTS_DIR; };
 		22EE63B21F1118D700EFE182 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		22EE63B41F1118D700EFE182 /* Makefile */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
-		22EE63B61F1118D700EFE182 /* ReadMe.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = ReadMe.txt; sourceTree = "<group>"; };
 		22EE63B81F1118D700EFE182 /* Sketchbook.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = Sketchbook.txt; path = Sketchbook/Sketchbook.txt; sourceTree = "<group>"; };
 		22EE63BA1F1118D700EFE182 /* Arduino Due (Programming Port).xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "Arduino Due (Programming Port).xcconfig"; path = "Configurations/Arduino Due (Programming Port).xcconfig"; sourceTree = "<group>"; };
 		22EE63BB1F1118D700EFE182 /* Arduino Duemilanove.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "Arduino Duemilanove.xcconfig"; path = "Configurations/Arduino Duemilanove.xcconfig"; sourceTree = "<group>"; };
@@ -951,7 +950,6 @@
 				227AC4411F66CD6E001F2B09 /* examples */,
 				22EE63B21F1118D700EFE182 /* main.cpp */,
 				22EE63B41F1118D700EFE182 /* Makefile */,
-				22EE63B61F1118D700EFE182 /* ReadMe.txt */,
 				2299A1481F14EFE40011159F /* keywords.txt */,
 				22EE63FD1F1118D700EFE182 /* SPEEEduino_LowLevel_Library.h */,
 				22EE63FE1F1118D700EFE182 /* SPEEEduino_LowLevel_Library.cpp */,

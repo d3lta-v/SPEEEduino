@@ -267,62 +267,75 @@ function disclosure_triangle(elt) {
 <h2 class="h2tight">Functions</h2>
 <dl>
 <dt><tt><a href="index.html#//apple_ref/c/func/beginDeepSleep" target="_top">beginDeepSleep</a></tt></dt>
-<dd></dd>
+<dd><p>Initiates the deep sleep feature for the ESP8266 module</dd>
 <dt><tt><a href="index.html#//apple_ref/c/func/beginSingleConnection" target="_top">beginSingleConnection</a></tt></dt>
-<dd></dd>
+<dd><p>Initiates a connection when the module is set to single connection mode, in other words, AT+CIPMUX? returns 0</dd>
 <dt><tt><a href="index.html#//apple_ref/c/func/beginTCPServer" target="_top">beginTCPServer</a></tt></dt>
-<dd></dd>
+<dd><p>Starts a TCP server with a certain port</dd>
 <dt><tt><a href="index.html#//apple_ref/c/func/disconnectAP" target="_top">disconnectAP</a></tt></dt>
-<dd></dd>
+<dd><p>Disconnect from an access point.</dd>
 <dt><tt><a href="index.html#//apple_ref/c/func/endConnection" target="_top">endConnection</a></tt></dt>
-<dd></dd>
+<dd><p>Closes the current connection</dd>
 <dt><tt><a href="index.html#//apple_ref/c/func/getLocalIP" target="_top">getLocalIP</a></tt></dt>
-<dd></dd>
+<dd><p>Get the IP address of the module. If the module is in station mode, it retrieves the assigned IP address of the module.
+If the module is in SoftAP mode, it will retrieve the IP address of the access point created by the module.</dd>
 <dt><tt><a href="index.html#//apple_ref/c/func/joinAP" target="_top">joinAP</a></tt></dt>
-<dd></dd>
+<dd><p>Joins an access point with the SSID and password specified. Only works for PSK-based networks (password only)</dd>
 <dt><tt><a href="index.html#//apple_ref/c/func/listAP" target="_top">listAP</a></tt></dt>
-<dd></dd>
+<dd><p>Lists the access points around the device</dd>
 <dt><tt><a href="index.html#//apple_ref/c/func/listVersion" target="_top">listVersion</a></tt></dt>
-<dd></dd>
+<dd><p>Lists the firmware version of the firmware on board.
+This information contains the AT version, SDK version and compile time</dd>
 <dt><tt><a href="index.html#//apple_ref/c/func/openLink" target="_top">openLink</a></tt></dt>
-<dd></dd>
+<dd><p>Opens the serial link from the SPEEEduino to the ESP-01 module
+</dd>
 <dt><tt><a href="index.html#//apple_ref/c/func/rawInput" target="_top">rawInput</a></tt></dt>
-<dd></dd>
+<dd><p>Inputs raw text into the ESP-01 module. This command INCLUDES the carriage return and
+newline characters
+</p>
+<p><b>WARNING:</b><br /></p><div class='warning_indent'><p>Make sure that you manually check for the response with the wait() function
+</p></div>
+</dd>
 <dt><tt><a href="index.html#//apple_ref/c/func/receiveData" target="_top">receiveData</a></tt></dt>
-<dd></dd>
+<dd><p>Waits for data with a timeout.</dd>
 <dt><tt><a href="index.html#//apple_ref/c/func/reset" target="_top">reset</a></tt></dt>
 <dd></dd>
 <dt><tt><a href="index.html#//apple_ref/c/func/sendDataMultipleConnection" target="_top">sendDataMultipleConnection</a></tt></dt>
-<dd></dd>
+<dd><p>Sends data on multiple connection mode, this must be run directly after `startSingleConnection()`.
+Once this completes successfully, you MUST start reading the input</dd>
 <dt><tt><a href="index.html#//apple_ref/c/func/sendDataSingleConnection" target="_top">sendDataSingleConnection</a></tt></dt>
-<dd></dd>
+<dd><p>Sends data on single connection mode, this must be run directly after `startSingleConnection()`.
+Once this completes successfully, you MUST start reading the input</dd>
 <dt><tt><a href="index.html#//apple_ref/c/func/setConnectionAmount" target="_top">setConnectionAmount</a></tt></dt>
-<dd></dd>
+<dd><p>Sets the mode for the number of simultaneous connections allowed</dd>
 <dt><tt><a href="index.html#//apple_ref/c/func/setDHCPEnabled" target="_top">setDHCPEnabled</a></tt></dt>
-<dd></dd>
+<dd><p>Sets the DHCP to be enabled or disabled for both station and softAP modes. This</dd>
 <dt><tt><a href="index.html#//apple_ref/c/func/setIP" target="_top">setIP</a></tt></dt>
-<dd></dd>
+<dd><p>Sets parameters for static IP allocation without DHCP.</dd>
 <dt><tt><a href="index.html#//apple_ref/c/func/setSoftAPSettings" target="_top">setSoftAPSettings</a></tt></dt>
-<dd></dd>
+<dd><p>Sets the SoftAP's settings, such as the name of the hotspot, password and so on</dd>
 <dt><tt><a href="index.html#//apple_ref/c/func/setSSLBufferSize" target="_top">setSSLBufferSize</a></tt></dt>
-<dd></dd>
+<dd><p>Sets the SSL buffer size.</dd>
 <dt><tt><a href="index.html#//apple_ref/c/func/setStationName" target="_top">setStationName</a></tt></dt>
-<dd></dd>
+<dd><p>Sets name of the ESP8266 client (in other words, when it's connected to a Wi-Fi hotspot)</dd>
 <dt><tt><a href="index.html#//apple_ref/c/func/setWiFiMode" target="_top">setWiFiMode</a></tt></dt>
-<dd></dd>
+<dd><p>Sets the Wi-Fi mode of the device to operate as a Wi-Fi station (client), access point, or both.
+This setting will be saved in non-volatile memory</dd>
 <dt><tt><a href="index.html#//apple_ref/c/func/slowOpenLink" target="_top">slowOpenLink</a></tt></dt>
-<dd></dd>
+<dd><p>Opens the serial link from the SPEEEduino to the ESP-01 module, and imposes an artificial delay</dd>
 <dt><tt><a href="index.html#//apple_ref/c/func/smokeTest" target="_top">smokeTest</a></tt></dt>
-<dd></dd>
+<dd><p>A simple smoke test to see if the module responds</dd>
 <dt><tt><a href="index.html#//apple_ref/c/func/wait" target="_top">wait</a></tt></dt>
-<dd></dd>
+<dd><p>Waits for a certain serial input. This also prints out the serial data before hitting the correct case
+if debug mode is enabled.</dd>
 <dt><tt><a href="index.html#//apple_ref/c/func/writeCommandFromPROGMEM" target="_top">writeCommandFromPROGMEM</a></tt></dt>
-<dd></dd>
+<dd><p>Writes a command from PROGMEM to the ESP8266's serial ports</dd>
 </dl>
 <hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/beginDeepSleep;   name=beginDeepSleep -->
 <a name="//apple_ref/c/func/beginDeepSleep"></a>
 <h3><a name="beginDeepSleep">beginDeepSleep</a></h3>
-<hr class="afterName"><div class='declaration_indent'>
+<hr class="afterName"><p><!-- headerDoc=abstract;uid=//apple_ref/c/func/beginDeepSleep;name=start --><!-- begin abstract --><p>Initiates the deep sleep feature for the ESP8266 module<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/c/func/beginDeepSleep;name=end --></p>
+<div class='declaration_indent'>
 <pre><!-- headerDoc=declaration;uid=//apple_ref/c/func/beginDeepSleep;name=start --><!-- a logicalPath="//apple_ref/cpp/cl/int16_t //apple_ref/cpp/tdef/int16_t //apple_ref/cpp/tag/int16_t //apple_ref/cpp/struct/int16_t //apple_ref/cpp/intf/int16_t //apple_ref/doc/anysymbol/int16_t" machineGenerated="true" --><span class="type">int16_t</span><!-- /a --> <!-- a logicalPath="//apple_ref/cpp/cl/SPEEEduino_LowLevel //apple_ref/cpp/tdef/SPEEEduino_LowLevel //apple_ref/cpp/tag/SPEEEduino_LowLevel //apple_ref/cpp/struct/SPEEEduino_LowLevel //apple_ref/cpp/intf/SPEEEduino_LowLevel //apple_ref/doc/anysymbol/SPEEEduino_LowLevel" machineGenerated="true" --><span class="type">SPEEEduino_LowLevel</span><!-- /a -->::<!-- a logicalPath="//apple_ref/cpp/instm/beginDeepSleep //apple_ref/cpp/clm/beginDeepSleep //apple_ref/cpp/intfcm/beginDeepSleep //apple_ref/cpp/intfm/beginDeepSleep //apple_ref/cpp/func/beginDeepSleep //apple_ref/cpp/ftmplt/beginDeepSleep //apple_ref/cpp/defn/beginDeepSleep //apple_ref/cpp/macro/beginDeepSleep //apple_ref/doc/anysymbol/beginDeepSleep" machineGenerated="true" --><span class="function">beginDeepSleep</span><!-- /a -->(
     <!-- a logicalPath="//apple_ref/cpp/cl/uint16_t //apple_ref/cpp/tdef/uint16_t //apple_ref/cpp/tag/uint16_t //apple_ref/cpp/struct/uint16_t //apple_ref/cpp/intf/uint16_t //apple_ref/doc/anysymbol/uint16_t" machineGenerated="true" --><span class="type">uint16_t</span><!-- /a --> <span class="param">sleepTime</span>,
     <!-- a logicalPath="//apple_ref/cpp/cl/bool //apple_ref/cpp/tdef/bool //apple_ref/cpp/tag/bool //apple_ref/cpp/struct/bool //apple_ref/cpp/intf/bool //apple_ref/doc/anysymbol/bool" machineGenerated="true" --><span class="type">bool</span><!-- /a --> <span class="param">blocking</span>) <!-- headerDoc=declaration;uid=//apple_ref/c/func/beginDeepSleep;name=end --></pre>
@@ -341,15 +354,14 @@ function disclosure_triangle(elt) {
 <h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5><p><!-- begin return value --><p>0, if it successfully sleeps and recovers and -1 if it times out (when blocking=true), and always 0 if blocking = false
 
 <!-- end return value --></p><h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
-<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/c/func/beginDeepSleep;name=start --><p>Initiates the deep sleep feature for the ESP8266 module
-</p>
-<p><b>WARNING:</b><br /></p><div class='warning_indent'><p>This is a blocking function with potentially long delays if the blocking flag is set to true
+<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/c/func/beginDeepSleep;name=start --><p><b>WARNING:</b><br /></p><div class='warning_indent'><p>This is a blocking function with potentially long delays if the blocking flag is set to true
 </p></div>
 <!-- headerDoc=discussion;uid=//apple_ref/c/func/beginDeepSleep;name=end --><!-- end discussion -->
 <hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/beginSingleConnection;   name=beginSingleConnection -->
 <a name="//apple_ref/c/func/beginSingleConnection"></a>
 <h3><a name="beginSingleConnection">beginSingleConnection</a></h3>
-<hr class="afterName"><div class='declaration_indent'>
+<hr class="afterName"><p><!-- headerDoc=abstract;uid=//apple_ref/c/func/beginSingleConnection;name=start --><!-- begin abstract --><p>Initiates a connection when the module is set to single connection mode, in other words, AT+CIPMUX? returns 0<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/c/func/beginSingleConnection;name=end --></p>
+<div class='declaration_indent'>
 <pre><!-- headerDoc=declaration;uid=//apple_ref/c/func/beginSingleConnection;name=start --><!-- a logicalPath="//apple_ref/cpp/cl/int16_t //apple_ref/cpp/tdef/int16_t //apple_ref/cpp/tag/int16_t //apple_ref/cpp/struct/int16_t //apple_ref/cpp/intf/int16_t //apple_ref/doc/anysymbol/int16_t" machineGenerated="true" --><span class="type">int16_t</span><!-- /a --> <!-- a logicalPath="//apple_ref/cpp/cl/SPEEEduino_LowLevel //apple_ref/cpp/tdef/SPEEEduino_LowLevel //apple_ref/cpp/tag/SPEEEduino_LowLevel //apple_ref/cpp/struct/SPEEEduino_LowLevel //apple_ref/cpp/intf/SPEEEduino_LowLevel //apple_ref/doc/anysymbol/SPEEEduino_LowLevel" machineGenerated="true" --><span class="type">SPEEEduino_LowLevel</span><!-- /a -->::<!-- a logicalPath="//apple_ref/cpp/instm/beginSingleConnection //apple_ref/cpp/clm/beginSingleConnection //apple_ref/cpp/intfcm/beginSingleConnection //apple_ref/cpp/intfm/beginSingleConnection //apple_ref/cpp/func/beginSingleConnection //apple_ref/cpp/ftmplt/beginSingleConnection //apple_ref/cpp/defn/beginSingleConnection //apple_ref/cpp/macro/beginSingleConnection //apple_ref/doc/anysymbol/beginSingleConnection" machineGenerated="true" --><span class="function">beginSingleConnection</span><!-- /a -->(
     <!-- a logicalPath="//apple_ref/cpp/cl/ConnectionType //apple_ref/cpp/tdef/ConnectionType //apple_ref/cpp/tag/ConnectionType //apple_ref/cpp/struct/ConnectionType //apple_ref/cpp/intf/ConnectionType //apple_ref/doc/anysymbol/ConnectionType" machineGenerated="true" --><span class="type">ConnectionType</span><!-- /a --> <span class="param">type</span>,
     <!-- a logicalPath="//apple_ref/cpp/cl/String //apple_ref/cpp/tdef/String //apple_ref/cpp/tag/String //apple_ref/cpp/struct/String //apple_ref/cpp/intf/String //apple_ref/doc/anysymbol/String" machineGenerated="true" --><span class="type">String</span><!-- /a --> <span class="param">remoteIP</span>,
@@ -371,14 +383,11 @@ function disclosure_triangle(elt) {
 </div>
 <h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5><p><!-- begin return value --><p>0 if successfully established connection, 1 if there's an error with the connection, 2 if the connection socket is in use, and -1 if the command timed out
 
-<!-- end return value --></p><h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
-<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/c/func/beginSingleConnection;name=start --><p>Initiates a connection when the module is set to single connection mode, in other words, AT+CIPMUX? returns 0
-</p>
-<!-- headerDoc=discussion;uid=//apple_ref/c/func/beginSingleConnection;name=end --><!-- end discussion -->
-<hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/beginTCPServer;   name=beginTCPServer -->
+<!-- end return value --></p><hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/beginTCPServer;   name=beginTCPServer -->
 <a name="//apple_ref/c/func/beginTCPServer"></a>
 <h3><a name="beginTCPServer">beginTCPServer</a></h3>
-<hr class="afterName"><div class='declaration_indent'>
+<hr class="afterName"><p><!-- headerDoc=abstract;uid=//apple_ref/c/func/beginTCPServer;name=start --><!-- begin abstract --><p>Starts a TCP server with a certain port<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/c/func/beginTCPServer;name=end --></p>
+<div class='declaration_indent'>
 <pre><!-- headerDoc=declaration;uid=//apple_ref/c/func/beginTCPServer;name=start --><!-- a logicalPath="//apple_ref/cpp/cl/int16_t //apple_ref/cpp/tdef/int16_t //apple_ref/cpp/tag/int16_t //apple_ref/cpp/struct/int16_t //apple_ref/cpp/intf/int16_t //apple_ref/doc/anysymbol/int16_t" machineGenerated="true" --><span class="type">int16_t</span><!-- /a --> <!-- a logicalPath="//apple_ref/cpp/cl/SPEEEduino_LowLevel //apple_ref/cpp/tdef/SPEEEduino_LowLevel //apple_ref/cpp/tag/SPEEEduino_LowLevel //apple_ref/cpp/struct/SPEEEduino_LowLevel //apple_ref/cpp/intf/SPEEEduino_LowLevel //apple_ref/doc/anysymbol/SPEEEduino_LowLevel" machineGenerated="true" --><span class="type">SPEEEduino_LowLevel</span><!-- /a -->::<!-- a logicalPath="//apple_ref/cpp/instm/beginTCPServer //apple_ref/cpp/clm/beginTCPServer //apple_ref/cpp/intfcm/beginTCPServer //apple_ref/cpp/intfm/beginTCPServer //apple_ref/cpp/func/beginTCPServer //apple_ref/cpp/ftmplt/beginTCPServer //apple_ref/cpp/defn/beginTCPServer //apple_ref/cpp/macro/beginTCPServer //apple_ref/doc/anysymbol/beginTCPServer" machineGenerated="true" --><span class="function">beginTCPServer</span><!-- /a -->(
     <!-- a logicalPath="//apple_ref/cpp/cl/TCPServer //apple_ref/cpp/tdef/TCPServer //apple_ref/cpp/tag/TCPServer //apple_ref/cpp/struct/TCPServer //apple_ref/cpp/intf/TCPServer //apple_ref/doc/anysymbol/TCPServer" machineGenerated="true" --><span class="type">TCPServer</span><!-- /a --> <span class="param">createServer</span>,
     <!-- a logicalPath="//apple_ref/cpp/cl/uint16_t //apple_ref/cpp/tdef/uint16_t //apple_ref/cpp/tag/uint16_t //apple_ref/cpp/struct/uint16_t //apple_ref/cpp/intf/uint16_t //apple_ref/doc/anysymbol/uint16_t" machineGenerated="true" --><span class="type">uint16_t</span><!-- /a --> <span class="param">port</span>) <!-- headerDoc=declaration;uid=//apple_ref/c/func/beginTCPServer;name=end --></pre>
@@ -396,26 +405,20 @@ function disclosure_triangle(elt) {
 </div>
 <h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5><p><!-- begin return value --><p>0 if the TCP server is initialised, 1 if the TCP server did not initialise, -1 if the command timed out
 
-<!-- end return value --></p><h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
-<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/c/func/beginTCPServer;name=start --><p>Starts a TCP server with a certain port
-</p>
-<!-- headerDoc=discussion;uid=//apple_ref/c/func/beginTCPServer;name=end --><!-- end discussion -->
-<hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/disconnectAP;   name=disconnectAP -->
+<!-- end return value --></p><hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/disconnectAP;   name=disconnectAP -->
 <a name="//apple_ref/c/func/disconnectAP"></a>
 <h3><a name="disconnectAP">disconnectAP</a></h3>
-<hr class="afterName"><div class='declaration_indent'>
+<hr class="afterName"><p><!-- headerDoc=abstract;uid=//apple_ref/c/func/disconnectAP;name=start --><!-- begin abstract --><p>Disconnect from an access point.<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/c/func/disconnectAP;name=end --></p>
+<div class='declaration_indent'>
 <pre><!-- headerDoc=declaration;uid=//apple_ref/c/func/disconnectAP;name=start --><!-- a logicalPath="//apple_ref/cpp/cl/int16_t //apple_ref/cpp/tdef/int16_t //apple_ref/cpp/tag/int16_t //apple_ref/cpp/struct/int16_t //apple_ref/cpp/intf/int16_t //apple_ref/doc/anysymbol/int16_t" machineGenerated="true" --><span class="type">int16_t</span><!-- /a --> <!-- a logicalPath="//apple_ref/cpp/cl/SPEEEduino_LowLevel //apple_ref/cpp/tdef/SPEEEduino_LowLevel //apple_ref/cpp/tag/SPEEEduino_LowLevel //apple_ref/cpp/struct/SPEEEduino_LowLevel //apple_ref/cpp/intf/SPEEEduino_LowLevel //apple_ref/doc/anysymbol/SPEEEduino_LowLevel" machineGenerated="true" --><span class="type">SPEEEduino_LowLevel</span><!-- /a -->::<!-- a logicalPath="//apple_ref/cpp/instm/disconnectAP //apple_ref/cpp/clm/disconnectAP //apple_ref/cpp/intfcm/disconnectAP //apple_ref/cpp/intfm/disconnectAP //apple_ref/cpp/func/disconnectAP //apple_ref/cpp/ftmplt/disconnectAP //apple_ref/cpp/defn/disconnectAP //apple_ref/cpp/macro/disconnectAP //apple_ref/doc/anysymbol/disconnectAP" machineGenerated="true" --><span class="function">disconnectAP</span><!-- /a -->() <!-- headerDoc=declaration;uid=//apple_ref/c/func/disconnectAP;name=end --></pre>
 </div>
 <h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5><p><!-- begin return value --><p>0 if successfully disconnected access point, 1 if it failed, and -1 if it timed out
 
-<!-- end return value --></p><h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
-<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/c/func/disconnectAP;name=start --><p>Disconnect from an access point.
-</p>
-<!-- headerDoc=discussion;uid=//apple_ref/c/func/disconnectAP;name=end --><!-- end discussion -->
-<hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/endConnection;   name=endConnection -->
+<!-- end return value --></p><hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/endConnection;   name=endConnection -->
 <a name="//apple_ref/c/func/endConnection"></a>
 <h3><a name="endConnection">endConnection</a></h3>
-<hr class="afterName"><div class='declaration_indent'>
+<hr class="afterName"><p><!-- headerDoc=abstract;uid=//apple_ref/c/func/endConnection;name=start --><!-- begin abstract --><p>Closes the current connection<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/c/func/endConnection;name=end --></p>
+<div class='declaration_indent'>
 <pre><!-- headerDoc=declaration;uid=//apple_ref/c/func/endConnection;name=start --><!-- a logicalPath="//apple_ref/cpp/cl/int16_t //apple_ref/cpp/tdef/int16_t //apple_ref/cpp/tag/int16_t //apple_ref/cpp/struct/int16_t //apple_ref/cpp/intf/int16_t //apple_ref/doc/anysymbol/int16_t" machineGenerated="true" --><span class="type">int16_t</span><!-- /a --> <!-- a logicalPath="//apple_ref/cpp/cl/SPEEEduino_LowLevel //apple_ref/cpp/tdef/SPEEEduino_LowLevel //apple_ref/cpp/tag/SPEEEduino_LowLevel //apple_ref/cpp/struct/SPEEEduino_LowLevel //apple_ref/cpp/intf/SPEEEduino_LowLevel //apple_ref/doc/anysymbol/SPEEEduino_LowLevel" machineGenerated="true" --><span class="type">SPEEEduino_LowLevel</span><!-- /a -->::<!-- a logicalPath="//apple_ref/cpp/instm/endConnection //apple_ref/cpp/clm/endConnection //apple_ref/cpp/intfcm/endConnection //apple_ref/cpp/intfm/endConnection //apple_ref/cpp/func/endConnection //apple_ref/cpp/ftmplt/endConnection //apple_ref/cpp/defn/endConnection //apple_ref/cpp/macro/endConnection //apple_ref/doc/anysymbol/endConnection" machineGenerated="true" --><span class="function">endConnection</span><!-- /a -->(
     <!-- a logicalPath="//apple_ref/cpp/cl/int8_t //apple_ref/cpp/tdef/int8_t //apple_ref/cpp/tag/int8_t //apple_ref/cpp/struct/int8_t //apple_ref/cpp/intf/int8_t //apple_ref/doc/anysymbol/int8_t" machineGenerated="true" --><span class="type">int8_t</span><!-- /a --> <!-- a logicalPath="//apple_ref/cpp/cl/linkID //apple_ref/cpp/tdef/linkID //apple_ref/cpp/tag/linkID //apple_ref/cpp/struct/linkID //apple_ref/cpp/intf/linkID //apple_ref/doc/anysymbol/linkID" machineGenerated="true" --><span class="type">linkID</span><!-- /a --> = -<span class="number">1</span>) <!-- headerDoc=declaration;uid=//apple_ref/c/func/endConnection;name=end --></pre>
 </div>
@@ -429,27 +432,21 @@ function disclosure_triangle(elt) {
 </div>
 <h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5><p><!-- begin return value --><p>0 if the connection is closed, 1 if the command failed, -1 if the command timed out
 
-<!-- end return value --></p><h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
-<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/c/func/endConnection;name=start --><p>Closes the current connection
-</p>
-<!-- headerDoc=discussion;uid=//apple_ref/c/func/endConnection;name=end --><!-- end discussion -->
-<hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/getLocalIP;   name=getLocalIP -->
+<!-- end return value --></p><hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/getLocalIP;   name=getLocalIP -->
 <a name="//apple_ref/c/func/getLocalIP"></a>
 <h3><a name="getLocalIP">getLocalIP</a></h3>
-<hr class="afterName"><div class='declaration_indent'>
+<hr class="afterName"><p><!-- headerDoc=abstract;uid=//apple_ref/c/func/getLocalIP;name=start --><!-- begin abstract --><p>Get the IP address of the module. If the module is in station mode, it retrieves the assigned IP address of the module.
+If the module is in SoftAP mode, it will retrieve the IP address of the access point created by the module.<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/c/func/getLocalIP;name=end --></p>
+<div class='declaration_indent'>
 <pre><!-- headerDoc=declaration;uid=//apple_ref/c/func/getLocalIP;name=start --><!-- a logicalPath="//apple_ref/cpp/cl/int16_t //apple_ref/cpp/tdef/int16_t //apple_ref/cpp/tag/int16_t //apple_ref/cpp/struct/int16_t //apple_ref/cpp/intf/int16_t //apple_ref/doc/anysymbol/int16_t" machineGenerated="true" --><span class="type">int16_t</span><!-- /a --> <!-- a logicalPath="//apple_ref/cpp/cl/SPEEEduino_LowLevel //apple_ref/cpp/tdef/SPEEEduino_LowLevel //apple_ref/cpp/tag/SPEEEduino_LowLevel //apple_ref/cpp/struct/SPEEEduino_LowLevel //apple_ref/cpp/intf/SPEEEduino_LowLevel //apple_ref/doc/anysymbol/SPEEEduino_LowLevel" machineGenerated="true" --><span class="type">SPEEEduino_LowLevel</span><!-- /a -->::<!-- a logicalPath="//apple_ref/cpp/instm/getLocalIP //apple_ref/cpp/clm/getLocalIP //apple_ref/cpp/intfcm/getLocalIP //apple_ref/cpp/intfm/getLocalIP //apple_ref/cpp/func/getLocalIP //apple_ref/cpp/ftmplt/getLocalIP //apple_ref/cpp/defn/getLocalIP //apple_ref/cpp/macro/getLocalIP //apple_ref/doc/anysymbol/getLocalIP" machineGenerated="true" --><span class="function">getLocalIP</span><!-- /a -->() <!-- headerDoc=declaration;uid=//apple_ref/c/func/getLocalIP;name=end --></pre>
 </div>
 <h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5><p><!-- begin return value --><p>0, if it successfully returns the IP address and -1 if it times out
 
-<!-- end return value --></p><h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
-<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/c/func/getLocalIP;name=start --><p>Get the IP address of the module. If the module is in station mode, it retrieves the assigned IP address of the module.
-If the module is in SoftAP mode, it will retrieve the IP address of the access point created by the module.
-</p>
-<!-- headerDoc=discussion;uid=//apple_ref/c/func/getLocalIP;name=end --><!-- end discussion -->
-<hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/joinAP;   name=joinAP -->
+<!-- end return value --></p><hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/joinAP;   name=joinAP -->
 <a name="//apple_ref/c/func/joinAP"></a>
 <h3><a name="joinAP">joinAP</a></h3>
-<hr class="afterName"><div class='declaration_indent'>
+<hr class="afterName"><p><!-- headerDoc=abstract;uid=//apple_ref/c/func/joinAP;name=start --><!-- begin abstract --><p>Joins an access point with the SSID and password specified. Only works for PSK-based networks (password only)<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/c/func/joinAP;name=end --></p>
+<div class='declaration_indent'>
 <pre><!-- headerDoc=declaration;uid=//apple_ref/c/func/joinAP;name=start --><!-- a logicalPath="//apple_ref/cpp/cl/int16_t //apple_ref/cpp/tdef/int16_t //apple_ref/cpp/tag/int16_t //apple_ref/cpp/struct/int16_t //apple_ref/cpp/intf/int16_t //apple_ref/doc/anysymbol/int16_t" machineGenerated="true" --><span class="type">int16_t</span><!-- /a --> <!-- a logicalPath="//apple_ref/cpp/cl/SPEEEduino_LowLevel //apple_ref/cpp/tdef/SPEEEduino_LowLevel //apple_ref/cpp/tag/SPEEEduino_LowLevel //apple_ref/cpp/struct/SPEEEduino_LowLevel //apple_ref/cpp/intf/SPEEEduino_LowLevel //apple_ref/doc/anysymbol/SPEEEduino_LowLevel" machineGenerated="true" --><span class="type">SPEEEduino_LowLevel</span><!-- /a -->::<!-- a logicalPath="//apple_ref/cpp/instm/joinAP //apple_ref/cpp/clm/joinAP //apple_ref/cpp/intfcm/joinAP //apple_ref/cpp/intfm/joinAP //apple_ref/cpp/func/joinAP //apple_ref/cpp/ftmplt/joinAP //apple_ref/cpp/defn/joinAP //apple_ref/cpp/macro/joinAP //apple_ref/doc/anysymbol/joinAP" machineGenerated="true" --><span class="function">joinAP</span><!-- /a -->(
     <!-- a logicalPath="//apple_ref/cpp/cl/String //apple_ref/cpp/tdef/String //apple_ref/cpp/tag/String //apple_ref/cpp/struct/String //apple_ref/cpp/intf/String //apple_ref/doc/anysymbol/String" machineGenerated="true" --><span class="type">String</span><!-- /a --> <span class="param">ssid</span>,
     <!-- a logicalPath="//apple_ref/cpp/cl/String //apple_ref/cpp/tdef/String //apple_ref/cpp/tag/String //apple_ref/cpp/struct/String //apple_ref/cpp/intf/String //apple_ref/doc/anysymbol/String" machineGenerated="true" --><span class="type">String</span><!-- /a --> <span class="param">password</span>) <!-- headerDoc=declaration;uid=//apple_ref/c/func/joinAP;name=end --></pre>
@@ -467,48 +464,43 @@ If the module is in SoftAP mode, it will retrieve the IP address of the access p
 </div>
 <h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5><p><!-- begin return value --><p>0 if successfully joined access point, 1 if it failed, and -1 if it timed out
 
-<!-- end return value --></p><h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
-<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/c/func/joinAP;name=start --><p>Joins an access point with the SSID and password specified. Only works for PSK-based networks (password only)
-</p>
-<!-- headerDoc=discussion;uid=//apple_ref/c/func/joinAP;name=end --><!-- end discussion -->
-<hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/listAP;   name=listAP -->
+<!-- end return value --></p><hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/listAP;   name=listAP -->
 <a name="//apple_ref/c/func/listAP"></a>
 <h3><a name="listAP">listAP</a></h3>
-<hr class="afterName"><div class='declaration_indent'>
+<hr class="afterName"><p><!-- headerDoc=abstract;uid=//apple_ref/c/func/listAP;name=start --><!-- begin abstract --><p>Lists the access points around the device<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/c/func/listAP;name=end --></p>
+<div class='declaration_indent'>
 <pre><!-- headerDoc=declaration;uid=//apple_ref/c/func/listAP;name=start --><!-- a logicalPath="//apple_ref/cpp/cl/int16_t //apple_ref/cpp/tdef/int16_t //apple_ref/cpp/tag/int16_t //apple_ref/cpp/struct/int16_t //apple_ref/cpp/intf/int16_t //apple_ref/doc/anysymbol/int16_t" machineGenerated="true" --><span class="type">int16_t</span><!-- /a --> <!-- a logicalPath="//apple_ref/cpp/cl/SPEEEduino_LowLevel //apple_ref/cpp/tdef/SPEEEduino_LowLevel //apple_ref/cpp/tag/SPEEEduino_LowLevel //apple_ref/cpp/struct/SPEEEduino_LowLevel //apple_ref/cpp/intf/SPEEEduino_LowLevel //apple_ref/doc/anysymbol/SPEEEduino_LowLevel" machineGenerated="true" --><span class="type">SPEEEduino_LowLevel</span><!-- /a -->::<!-- a logicalPath="//apple_ref/cpp/instm/listAP //apple_ref/cpp/clm/listAP //apple_ref/cpp/intfcm/listAP //apple_ref/cpp/intfm/listAP //apple_ref/cpp/func/listAP //apple_ref/cpp/ftmplt/listAP //apple_ref/cpp/defn/listAP //apple_ref/cpp/macro/listAP //apple_ref/doc/anysymbol/listAP" machineGenerated="true" --><span class="function">listAP</span><!-- /a -->() <!-- headerDoc=declaration;uid=//apple_ref/c/func/listAP;name=end --></pre>
 </div>
 <h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5><p><!-- begin return value --><p>0 if successfully listed all the access points, -1 if the request timed out
 
-<!-- end return value --></p><h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
-<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/c/func/listAP;name=start --><p>Lists the access points around the device
-</p>
-<!-- headerDoc=discussion;uid=//apple_ref/c/func/listAP;name=end --><!-- end discussion -->
-<hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/listVersion;   name=listVersion -->
+<!-- end return value --></p><hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/listVersion;   name=listVersion -->
 <a name="//apple_ref/c/func/listVersion"></a>
 <h3><a name="listVersion">listVersion</a></h3>
-<hr class="afterName"><div class='declaration_indent'>
+<hr class="afterName"><p><!-- headerDoc=abstract;uid=//apple_ref/c/func/listVersion;name=start --><!-- begin abstract --><p>Lists the firmware version of the firmware on board.
+This information contains the AT version, SDK version and compile time<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/c/func/listVersion;name=end --></p>
+<div class='declaration_indent'>
 <pre><!-- headerDoc=declaration;uid=//apple_ref/c/func/listVersion;name=start --><!-- a logicalPath="//apple_ref/cpp/cl/int16_t //apple_ref/cpp/tdef/int16_t //apple_ref/cpp/tag/int16_t //apple_ref/cpp/struct/int16_t //apple_ref/cpp/intf/int16_t //apple_ref/doc/anysymbol/int16_t" machineGenerated="true" --><span class="type">int16_t</span><!-- /a --> <!-- a logicalPath="//apple_ref/cpp/cl/SPEEEduino_LowLevel //apple_ref/cpp/tdef/SPEEEduino_LowLevel //apple_ref/cpp/tag/SPEEEduino_LowLevel //apple_ref/cpp/struct/SPEEEduino_LowLevel //apple_ref/cpp/intf/SPEEEduino_LowLevel //apple_ref/doc/anysymbol/SPEEEduino_LowLevel" machineGenerated="true" --><span class="type">SPEEEduino_LowLevel</span><!-- /a -->::<!-- a logicalPath="//apple_ref/cpp/instm/listVersion //apple_ref/cpp/clm/listVersion //apple_ref/cpp/intfcm/listVersion //apple_ref/cpp/intfm/listVersion //apple_ref/cpp/func/listVersion //apple_ref/cpp/ftmplt/listVersion //apple_ref/cpp/defn/listVersion //apple_ref/cpp/macro/listVersion //apple_ref/doc/anysymbol/listVersion" machineGenerated="true" --><span class="function">listVersion</span><!-- /a -->() <!-- headerDoc=declaration;uid=//apple_ref/c/func/listVersion;name=end --></pre>
 </div>
 <h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5><p><!-- begin return value --><p>0, if it responds and -1 if it times out
 
-<!-- end return value --></p><h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
-<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/c/func/listVersion;name=start --><p>Lists the firmware version of the firmware on board.
-This information contains the AT version, SDK version and compile time
-</p>
-<!-- headerDoc=discussion;uid=//apple_ref/c/func/listVersion;name=end --><!-- end discussion -->
-<hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/openLink;   name=openLink -->
+<!-- end return value --></p><hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/openLink;   name=openLink -->
 <a name="//apple_ref/c/func/openLink"></a>
 <h3><a name="openLink">openLink</a></h3>
-<hr class="afterName"><div class='declaration_indent'>
+<hr class="afterName"><p><!-- headerDoc=abstract;uid=//apple_ref/c/func/openLink;name=start --><!-- begin abstract --><p>Opens the serial link from the SPEEEduino to the ESP-01 module
+<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/c/func/openLink;name=end --></p>
+<div class='declaration_indent'>
 <pre><!-- headerDoc=declaration;uid=//apple_ref/c/func/openLink;name=start --><!-- a logicalPath="//apple_ref/cpp/cl/void //apple_ref/cpp/tdef/void //apple_ref/cpp/tag/void //apple_ref/cpp/struct/void //apple_ref/cpp/intf/void //apple_ref/doc/anysymbol/void" machineGenerated="true" --><span class="type">void</span><!-- /a --> <!-- a logicalPath="//apple_ref/cpp/cl/SPEEEduino_LowLevel //apple_ref/cpp/tdef/SPEEEduino_LowLevel //apple_ref/cpp/tag/SPEEEduino_LowLevel //apple_ref/cpp/struct/SPEEEduino_LowLevel //apple_ref/cpp/intf/SPEEEduino_LowLevel //apple_ref/doc/anysymbol/SPEEEduino_LowLevel" machineGenerated="true" --><span class="type">SPEEEduino_LowLevel</span><!-- /a -->::<!-- a logicalPath="//apple_ref/cpp/instm/openLink //apple_ref/cpp/clm/openLink //apple_ref/cpp/intfcm/openLink //apple_ref/cpp/intfm/openLink //apple_ref/cpp/func/openLink //apple_ref/cpp/ftmplt/openLink //apple_ref/cpp/defn/openLink //apple_ref/cpp/macro/openLink //apple_ref/doc/anysymbol/openLink" machineGenerated="true" --><span class="function">openLink</span><!-- /a -->() <!-- headerDoc=declaration;uid=//apple_ref/c/func/openLink;name=end --></pre>
 </div>
-<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
-<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/c/func/openLink;name=start --><p>Opens the serial link from the SPEEEduino to the ESP-01 module
-<!-- headerDoc=discussion;uid=//apple_ref/c/func/openLink;name=end --><!-- end discussion -->
 <hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/rawInput;   name=rawInput -->
 <a name="//apple_ref/c/func/rawInput"></a>
 <h3><a name="rawInput">rawInput</a></h3>
-<hr class="afterName"><div class='declaration_indent'>
+<hr class="afterName"><p><!-- headerDoc=abstract;uid=//apple_ref/c/func/rawInput;name=start --><!-- begin abstract --><p>Inputs raw text into the ESP-01 module. This command INCLUDES the carriage return and
+newline characters
+</p>
+<p><b>WARNING:</b><br /></p><div class='warning_indent'><p>Make sure that you manually check for the response with the wait() function
+</p></div>
+<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/c/func/rawInput;name=end --></p>
+<div class='declaration_indent'>
 <pre><!-- headerDoc=declaration;uid=//apple_ref/c/func/rawInput;name=start --><!-- a logicalPath="//apple_ref/cpp/cl/void //apple_ref/cpp/tdef/void //apple_ref/cpp/tag/void //apple_ref/cpp/struct/void //apple_ref/cpp/intf/void //apple_ref/doc/anysymbol/void" machineGenerated="true" --><span class="type">void</span><!-- /a --> <!-- a logicalPath="//apple_ref/cpp/cl/SPEEEduino_LowLevel //apple_ref/cpp/tdef/SPEEEduino_LowLevel //apple_ref/cpp/tag/SPEEEduino_LowLevel //apple_ref/cpp/struct/SPEEEduino_LowLevel //apple_ref/cpp/intf/SPEEEduino_LowLevel //apple_ref/doc/anysymbol/SPEEEduino_LowLevel" machineGenerated="true" --><span class="type">SPEEEduino_LowLevel</span><!-- /a -->::<!-- a logicalPath="//apple_ref/cpp/instm/rawInput //apple_ref/cpp/clm/rawInput //apple_ref/cpp/intfcm/rawInput //apple_ref/cpp/intfm/rawInput //apple_ref/cpp/func/rawInput //apple_ref/cpp/ftmplt/rawInput //apple_ref/cpp/defn/rawInput //apple_ref/cpp/macro/rawInput //apple_ref/doc/anysymbol/rawInput" machineGenerated="true" --><span class="function">rawInput</span><!-- /a -->(
     <!-- a logicalPath="//apple_ref/cpp/cl/String //apple_ref/cpp/tdef/String //apple_ref/cpp/tag/String //apple_ref/cpp/struct/String //apple_ref/cpp/intf/String //apple_ref/doc/anysymbol/String" machineGenerated="true" --><span class="type">String</span><!-- /a --> <span class="param">input</span>) <!-- headerDoc=declaration;uid=//apple_ref/c/func/rawInput;name=end --></pre>
 </div>
@@ -520,15 +512,11 @@ This information contains the AT version, SDK version and compile time
 <code>input</code></dt><dd><p>Your input into the ESP8266 module</dd>
 </dl>
 </div>
-<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
-<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/c/func/rawInput;name=start --><p>Inputs raw text into the ESP-01 module. This command INCLUDES the carriage return and newline characters
-</p>
-<p><b>WARNING:</b><br /></p><div class='warning_indent'><p>Make sure that you manually</p></div>
-<!-- headerDoc=discussion;uid=//apple_ref/c/func/rawInput;name=end --><!-- end discussion -->
 <hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/receiveData;   name=receiveData -->
 <a name="//apple_ref/c/func/receiveData"></a>
 <h3><a name="receiveData">receiveData</a></h3>
-<hr class="afterName"><div class='declaration_indent'>
+<hr class="afterName"><p><!-- headerDoc=abstract;uid=//apple_ref/c/func/receiveData;name=start --><!-- begin abstract --><p>Waits for data with a timeout.<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/c/func/receiveData;name=end --></p>
+<div class='declaration_indent'>
 <pre><!-- headerDoc=declaration;uid=//apple_ref/c/func/receiveData;name=start --><!-- a logicalPath="//apple_ref/cpp/cl/ReturnedData //apple_ref/cpp/tdef/ReturnedData //apple_ref/cpp/tag/ReturnedData //apple_ref/cpp/struct/ReturnedData //apple_ref/cpp/intf/ReturnedData //apple_ref/doc/anysymbol/ReturnedData" machineGenerated="true" --><span class="type">ReturnedData</span><!-- /a --> <!-- a logicalPath="//apple_ref/cpp/cl/SPEEEduino_LowLevel //apple_ref/cpp/tdef/SPEEEduino_LowLevel //apple_ref/cpp/tag/SPEEEduino_LowLevel //apple_ref/cpp/struct/SPEEEduino_LowLevel //apple_ref/cpp/intf/SPEEEduino_LowLevel //apple_ref/doc/anysymbol/SPEEEduino_LowLevel" machineGenerated="true" --><span class="type">SPEEEduino_LowLevel</span><!-- /a -->::<!-- a logicalPath="//apple_ref/cpp/instm/receiveData //apple_ref/cpp/clm/receiveData //apple_ref/cpp/intfcm/receiveData //apple_ref/cpp/intfm/receiveData //apple_ref/cpp/func/receiveData //apple_ref/cpp/ftmplt/receiveData //apple_ref/cpp/defn/receiveData //apple_ref/cpp/macro/receiveData //apple_ref/doc/anysymbol/receiveData" machineGenerated="true" --><span class="function">receiveData</span><!-- /a -->(
     <!-- a logicalPath="//apple_ref/cpp/cl/ConnectionAmount //apple_ref/cpp/tdef/ConnectionAmount //apple_ref/cpp/tag/ConnectionAmount //apple_ref/cpp/struct/ConnectionAmount //apple_ref/cpp/intf/ConnectionAmount //apple_ref/doc/anysymbol/ConnectionAmount" machineGenerated="true" --><span class="type">ConnectionAmount</span><!-- /a --> <span class="param">connectionAmount</span>,
     <!-- a logicalPath="//apple_ref/cpp/cl/uint32_t //apple_ref/cpp/tdef/uint32_t //apple_ref/cpp/tag/uint32_t //apple_ref/cpp/struct/uint32_t //apple_ref/cpp/intf/uint32_t //apple_ref/doc/anysymbol/uint32_t" machineGenerated="true" --><span class="type">uint32_t</span><!-- /a --> <!-- a logicalPath="//apple_ref/cpp/cl/timeOut //apple_ref/cpp/tdef/timeOut //apple_ref/cpp/tag/timeOut //apple_ref/cpp/struct/timeOut //apple_ref/cpp/intf/timeOut //apple_ref/doc/anysymbol/timeOut" machineGenerated="true" --><span class="type">timeOut</span><!-- /a -->=<span class="number">20000</span>) <!-- headerDoc=declaration;uid=//apple_ref/c/func/receiveData;name=end --></pre>
@@ -547,9 +535,7 @@ This information contains the AT version, SDK version and compile time
 <h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5><p><!-- begin return value --><p>A ReturnedData struct containing the link ID (-1 if you're using single connection) and the returned data in the form of a String
 
 <!-- end return value --></p><h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
-<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/c/func/receiveData;name=start --><p>Waits for data with a timeout.
-</p>
-<p><b>WARNING:</b><br /></p><div class='warning_indent'><p>This function is a BLOCKING function, meaning that it will pause your program execution
+<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/c/func/receiveData;name=start --><p><b>WARNING:</b><br /></p><div class='warning_indent'><p>This function is a BLOCKING function, meaning that it will pause your program execution
 </p></div>
 <!-- headerDoc=discussion;uid=//apple_ref/c/func/receiveData;name=end --><!-- end discussion -->
 <hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/reset;   name=reset -->
@@ -567,7 +553,9 @@ This information contains the AT version, SDK version and compile time
 <hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/sendDataMultipleConnection;   name=sendDataMultipleConnection -->
 <a name="//apple_ref/c/func/sendDataMultipleConnection"></a>
 <h3><a name="sendDataMultipleConnection">sendDataMultipleConnection</a></h3>
-<hr class="afterName"><div class='declaration_indent'>
+<hr class="afterName"><p><!-- headerDoc=abstract;uid=//apple_ref/c/func/sendDataMultipleConnection;name=start --><!-- begin abstract --><p>Sends data on multiple connection mode, this must be run directly after `startSingleConnection()`.
+Once this completes successfully, you MUST start reading the input<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/c/func/sendDataMultipleConnection;name=end --></p>
+<div class='declaration_indent'>
 <pre><!-- headerDoc=declaration;uid=//apple_ref/c/func/sendDataMultipleConnection;name=start --><!-- a logicalPath="//apple_ref/cpp/cl/int16_t //apple_ref/cpp/tdef/int16_t //apple_ref/cpp/tag/int16_t //apple_ref/cpp/struct/int16_t //apple_ref/cpp/intf/int16_t //apple_ref/doc/anysymbol/int16_t" machineGenerated="true" --><span class="type">int16_t</span><!-- /a --> <!-- a logicalPath="//apple_ref/cpp/cl/SPEEEduino_LowLevel //apple_ref/cpp/tdef/SPEEEduino_LowLevel //apple_ref/cpp/tag/SPEEEduino_LowLevel //apple_ref/cpp/struct/SPEEEduino_LowLevel //apple_ref/cpp/intf/SPEEEduino_LowLevel //apple_ref/doc/anysymbol/SPEEEduino_LowLevel" machineGenerated="true" --><span class="type">SPEEEduino_LowLevel</span><!-- /a -->::<!-- a logicalPath="//apple_ref/cpp/instm/sendDataMultipleConnection //apple_ref/cpp/clm/sendDataMultipleConnection //apple_ref/cpp/intfcm/sendDataMultipleConnection //apple_ref/cpp/intfm/sendDataMultipleConnection //apple_ref/cpp/func/sendDataMultipleConnection //apple_ref/cpp/ftmplt/sendDataMultipleConnection //apple_ref/cpp/defn/sendDataMultipleConnection //apple_ref/cpp/macro/sendDataMultipleConnection //apple_ref/doc/anysymbol/sendDataMultipleConnection" machineGenerated="true" --><span class="function">sendDataMultipleConnection</span><!-- /a -->(
     <!-- a logicalPath="//apple_ref/cpp/cl/String //apple_ref/cpp/tdef/String //apple_ref/cpp/tag/String //apple_ref/cpp/struct/String //apple_ref/cpp/intf/String //apple_ref/doc/anysymbol/String" machineGenerated="true" --><span class="type">String</span><!-- /a -->&amp; <span class="param">data</span>,
     <!-- a logicalPath="//apple_ref/cpp/cl/uint8_t //apple_ref/cpp/tdef/uint8_t //apple_ref/cpp/tag/uint8_t //apple_ref/cpp/struct/uint8_t //apple_ref/cpp/intf/uint8_t //apple_ref/doc/anysymbol/uint8_t" machineGenerated="true" --><span class="type">uint8_t</span><!-- /a --> <span class="param">linkID</span>) <!-- headerDoc=declaration;uid=//apple_ref/c/func/sendDataMultipleConnection;name=end --></pre>
@@ -585,15 +573,12 @@ This information contains the AT version, SDK version and compile time
 </div>
 <h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5><p><!-- begin return value --><p>0 if the data is successfully sent, 1 if the socket failed to initialise, 2 if the connection failed after sending, -1 if the process timed out
 
-<!-- end return value --></p><h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
-<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/c/func/sendDataMultipleConnection;name=start --><p>Sends data on multiple connection mode, this must be run directly after `startSingleConnection()`.
-Once this completes successfully, you MUST start reading the input
-</p>
-<!-- headerDoc=discussion;uid=//apple_ref/c/func/sendDataMultipleConnection;name=end --><!-- end discussion -->
-<hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/sendDataSingleConnection;   name=sendDataSingleConnection -->
+<!-- end return value --></p><hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/sendDataSingleConnection;   name=sendDataSingleConnection -->
 <a name="//apple_ref/c/func/sendDataSingleConnection"></a>
 <h3><a name="sendDataSingleConnection">sendDataSingleConnection</a></h3>
-<hr class="afterName"><div class='declaration_indent'>
+<hr class="afterName"><p><!-- headerDoc=abstract;uid=//apple_ref/c/func/sendDataSingleConnection;name=start --><!-- begin abstract --><p>Sends data on single connection mode, this must be run directly after `startSingleConnection()`.
+Once this completes successfully, you MUST start reading the input<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/c/func/sendDataSingleConnection;name=end --></p>
+<div class='declaration_indent'>
 <pre><!-- headerDoc=declaration;uid=//apple_ref/c/func/sendDataSingleConnection;name=start --><!-- a logicalPath="//apple_ref/cpp/cl/int16_t //apple_ref/cpp/tdef/int16_t //apple_ref/cpp/tag/int16_t //apple_ref/cpp/struct/int16_t //apple_ref/cpp/intf/int16_t //apple_ref/doc/anysymbol/int16_t" machineGenerated="true" --><span class="type">int16_t</span><!-- /a --> <!-- a logicalPath="//apple_ref/cpp/cl/SPEEEduino_LowLevel //apple_ref/cpp/tdef/SPEEEduino_LowLevel //apple_ref/cpp/tag/SPEEEduino_LowLevel //apple_ref/cpp/struct/SPEEEduino_LowLevel //apple_ref/cpp/intf/SPEEEduino_LowLevel //apple_ref/doc/anysymbol/SPEEEduino_LowLevel" machineGenerated="true" --><span class="type">SPEEEduino_LowLevel</span><!-- /a -->::<!-- a logicalPath="//apple_ref/cpp/instm/sendDataSingleConnection //apple_ref/cpp/clm/sendDataSingleConnection //apple_ref/cpp/intfcm/sendDataSingleConnection //apple_ref/cpp/intfm/sendDataSingleConnection //apple_ref/cpp/func/sendDataSingleConnection //apple_ref/cpp/ftmplt/sendDataSingleConnection //apple_ref/cpp/defn/sendDataSingleConnection //apple_ref/cpp/macro/sendDataSingleConnection //apple_ref/doc/anysymbol/sendDataSingleConnection" machineGenerated="true" --><span class="function">sendDataSingleConnection</span><!-- /a -->(
     <!-- a logicalPath="//apple_ref/cpp/cl/String //apple_ref/cpp/tdef/String //apple_ref/cpp/tag/String //apple_ref/cpp/struct/String //apple_ref/cpp/intf/String //apple_ref/doc/anysymbol/String" machineGenerated="true" --><span class="type">String</span><!-- /a -->&amp; <span class="param">data</span>) <!-- headerDoc=declaration;uid=//apple_ref/c/func/sendDataSingleConnection;name=end --></pre>
 </div>
@@ -607,15 +592,11 @@ Once this completes successfully, you MUST start reading the input
 </div>
 <h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5><p><!-- begin return value --><p>0 if the data is successfully sent, 1 if the socket failed to initialise, 2 if the connection failed after sending, -1 if the process timed out
 
-<!-- end return value --></p><h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
-<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/c/func/sendDataSingleConnection;name=start --><p>Sends data on single connection mode, this must be run directly after `startSingleConnection()`. 
-Once this completes successfully, you MUST start reading the input
-</p>
-<!-- headerDoc=discussion;uid=//apple_ref/c/func/sendDataSingleConnection;name=end --><!-- end discussion -->
-<hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/setConnectionAmount;   name=setConnectionAmount -->
+<!-- end return value --></p><hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/setConnectionAmount;   name=setConnectionAmount -->
 <a name="//apple_ref/c/func/setConnectionAmount"></a>
 <h3><a name="setConnectionAmount">setConnectionAmount</a></h3>
-<hr class="afterName"><div class='declaration_indent'>
+<hr class="afterName"><p><!-- headerDoc=abstract;uid=//apple_ref/c/func/setConnectionAmount;name=start --><!-- begin abstract --><p>Sets the mode for the number of simultaneous connections allowed<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/c/func/setConnectionAmount;name=end --></p>
+<div class='declaration_indent'>
 <pre><!-- headerDoc=declaration;uid=//apple_ref/c/func/setConnectionAmount;name=start --><!-- a logicalPath="//apple_ref/cpp/cl/int16_t //apple_ref/cpp/tdef/int16_t //apple_ref/cpp/tag/int16_t //apple_ref/cpp/struct/int16_t //apple_ref/cpp/intf/int16_t //apple_ref/doc/anysymbol/int16_t" machineGenerated="true" --><span class="type">int16_t</span><!-- /a --> <!-- a logicalPath="//apple_ref/cpp/cl/SPEEEduino_LowLevel //apple_ref/cpp/tdef/SPEEEduino_LowLevel //apple_ref/cpp/tag/SPEEEduino_LowLevel //apple_ref/cpp/struct/SPEEEduino_LowLevel //apple_ref/cpp/intf/SPEEEduino_LowLevel //apple_ref/doc/anysymbol/SPEEEduino_LowLevel" machineGenerated="true" --><span class="type">SPEEEduino_LowLevel</span><!-- /a -->::<!-- a logicalPath="//apple_ref/cpp/instm/setConnectionAmount //apple_ref/cpp/clm/setConnectionAmount //apple_ref/cpp/intfcm/setConnectionAmount //apple_ref/cpp/intfm/setConnectionAmount //apple_ref/cpp/func/setConnectionAmount //apple_ref/cpp/ftmplt/setConnectionAmount //apple_ref/cpp/defn/setConnectionAmount //apple_ref/cpp/macro/setConnectionAmount //apple_ref/doc/anysymbol/setConnectionAmount" machineGenerated="true" --><span class="function">setConnectionAmount</span><!-- /a -->(
     <!-- a logicalPath="//apple_ref/cpp/cl/ConnectionAmount //apple_ref/cpp/tdef/ConnectionAmount //apple_ref/cpp/tag/ConnectionAmount //apple_ref/cpp/struct/ConnectionAmount //apple_ref/cpp/intf/ConnectionAmount //apple_ref/doc/anysymbol/ConnectionAmount" machineGenerated="true" --><span class="type">ConnectionAmount</span><!-- /a --> <span class="param">amount</span>) <!-- headerDoc=declaration;uid=//apple_ref/c/func/setConnectionAmount;name=end --></pre>
 </div>
@@ -629,14 +610,11 @@ Once this completes successfully, you MUST start reading the input
 </div>
 <h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5><p><!-- begin return value --><p>0 if successfully set the name of the station, 1 if the command failed, and -1 if the command timed out
 
-<!-- end return value --></p><h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
-<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/c/func/setConnectionAmount;name=start --><p>Sets the mode for the number of simultaneous connections allowed
-</p>
-<!-- headerDoc=discussion;uid=//apple_ref/c/func/setConnectionAmount;name=end --><!-- end discussion -->
-<hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/setDHCPEnabled;   name=setDHCPEnabled -->
+<!-- end return value --></p><hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/setDHCPEnabled;   name=setDHCPEnabled -->
 <a name="//apple_ref/c/func/setDHCPEnabled"></a>
 <h3><a name="setDHCPEnabled">setDHCPEnabled</a></h3>
-<hr class="afterName"><div class='declaration_indent'>
+<hr class="afterName"><p><!-- headerDoc=abstract;uid=//apple_ref/c/func/setDHCPEnabled;name=start --><!-- begin abstract --><p>Sets the DHCP to be enabled or disabled for both station and softAP modes. This<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/c/func/setDHCPEnabled;name=end --></p>
+<div class='declaration_indent'>
 <pre><!-- headerDoc=declaration;uid=//apple_ref/c/func/setDHCPEnabled;name=start --><!-- a logicalPath="//apple_ref/cpp/cl/int16_t //apple_ref/cpp/tdef/int16_t //apple_ref/cpp/tag/int16_t //apple_ref/cpp/struct/int16_t //apple_ref/cpp/intf/int16_t //apple_ref/doc/anysymbol/int16_t" machineGenerated="true" --><span class="type">int16_t</span><!-- /a --> <!-- a logicalPath="//apple_ref/cpp/cl/SPEEEduino_LowLevel //apple_ref/cpp/tdef/SPEEEduino_LowLevel //apple_ref/cpp/tag/SPEEEduino_LowLevel //apple_ref/cpp/struct/SPEEEduino_LowLevel //apple_ref/cpp/intf/SPEEEduino_LowLevel //apple_ref/doc/anysymbol/SPEEEduino_LowLevel" machineGenerated="true" --><span class="type">SPEEEduino_LowLevel</span><!-- /a -->::<!-- a logicalPath="//apple_ref/cpp/instm/setDHCPEnabled //apple_ref/cpp/clm/setDHCPEnabled //apple_ref/cpp/intfcm/setDHCPEnabled //apple_ref/cpp/intfm/setDHCPEnabled //apple_ref/cpp/func/setDHCPEnabled //apple_ref/cpp/ftmplt/setDHCPEnabled //apple_ref/cpp/defn/setDHCPEnabled //apple_ref/cpp/macro/setDHCPEnabled //apple_ref/doc/anysymbol/setDHCPEnabled" machineGenerated="true" --><span class="function">setDHCPEnabled</span><!-- /a -->(
     <!-- a logicalPath="//apple_ref/cpp/cl/bool //apple_ref/cpp/tdef/bool //apple_ref/cpp/tag/bool //apple_ref/cpp/struct/bool //apple_ref/cpp/intf/bool //apple_ref/doc/anysymbol/bool" machineGenerated="true" --><span class="type">bool</span><!-- /a --> <span class="param">enabled</span>) <!-- headerDoc=declaration;uid=//apple_ref/c/func/setDHCPEnabled;name=end --></pre>
 </div>
@@ -651,15 +629,14 @@ Once this completes successfully, you MUST start reading the input
 <h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5><p><!-- begin return value --><p>0 if successfully set DHCP mode, -1 if it timed out
 
 <!-- end return value --></p><h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
-<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/c/func/setDHCPEnabled;name=start --><p>Sets the DHCP to be enabled or disabled for both station and softAP modes. This
-</p>
-<p><b>WARNING:</b><br /></p><div class='warning_indent'><p>This function is only for station mode only!
+<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/c/func/setDHCPEnabled;name=start --><p><b>WARNING:</b><br /></p><div class='warning_indent'><p>This function is only for station mode only!
 </p></div>
 <!-- headerDoc=discussion;uid=//apple_ref/c/func/setDHCPEnabled;name=end --><!-- end discussion -->
 <hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/setIP;   name=setIP -->
 <a name="//apple_ref/c/func/setIP"></a>
 <h3><a name="setIP">setIP</a></h3>
-<hr class="afterName"><div class='declaration_indent'>
+<hr class="afterName"><p><!-- headerDoc=abstract;uid=//apple_ref/c/func/setIP;name=start --><!-- begin abstract --><p>Sets parameters for static IP allocation without DHCP.<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/c/func/setIP;name=end --></p>
+<div class='declaration_indent'>
 <pre><!-- headerDoc=declaration;uid=//apple_ref/c/func/setIP;name=start --><!-- a logicalPath="//apple_ref/cpp/cl/int16_t //apple_ref/cpp/tdef/int16_t //apple_ref/cpp/tag/int16_t //apple_ref/cpp/struct/int16_t //apple_ref/cpp/intf/int16_t //apple_ref/doc/anysymbol/int16_t" machineGenerated="true" --><span class="type">int16_t</span><!-- /a --> <!-- a logicalPath="//apple_ref/cpp/cl/SPEEEduino_LowLevel //apple_ref/cpp/tdef/SPEEEduino_LowLevel //apple_ref/cpp/tag/SPEEEduino_LowLevel //apple_ref/cpp/struct/SPEEEduino_LowLevel //apple_ref/cpp/intf/SPEEEduino_LowLevel //apple_ref/doc/anysymbol/SPEEEduino_LowLevel" machineGenerated="true" --><span class="type">SPEEEduino_LowLevel</span><!-- /a -->::<!-- a logicalPath="//apple_ref/cpp/instm/setIP //apple_ref/cpp/clm/setIP //apple_ref/cpp/intfcm/setIP //apple_ref/cpp/intfm/setIP //apple_ref/cpp/func/setIP //apple_ref/cpp/ftmplt/setIP //apple_ref/cpp/defn/setIP //apple_ref/cpp/macro/setIP //apple_ref/doc/anysymbol/setIP" machineGenerated="true" --><span class="function">setIP</span><!-- /a -->(
     <!-- a logicalPath="//apple_ref/cpp/cl/bool //apple_ref/cpp/tdef/bool //apple_ref/cpp/tag/bool //apple_ref/cpp/struct/bool //apple_ref/cpp/intf/bool //apple_ref/doc/anysymbol/bool" machineGenerated="true" --><span class="type">bool</span><!-- /a --> <span class="param">permanent</span>,
     <!-- a logicalPath="//apple_ref/cpp/cl/String //apple_ref/cpp/tdef/String //apple_ref/cpp/tag/String //apple_ref/cpp/struct/String //apple_ref/cpp/intf/String //apple_ref/doc/anysymbol/String" machineGenerated="true" --><span class="type">String</span><!-- /a --> <span class="param">ip</span>,
@@ -686,14 +663,13 @@ Once this completes successfully, you MUST start reading the input
 <h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5><p><!-- begin return value --><p>0 if successfully set static IP, 1 if there's an issue, and -1 if it times out
 
 <!-- end return value --></p><h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
-<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/c/func/setIP;name=start --><p>Sets parameters for static IP allocation without DHCP.
-</p>
-<p><b>WARNING:</b><br /></p><div class='warning_indent'><p>You must turn DHCP off with setDHCPEnabled() first before setting the IP! This function has NOT been tested on a real device before!</p></div>
+<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/c/func/setIP;name=start --><p><b>WARNING:</b><br /></p><div class='warning_indent'><p>You must turn DHCP off with setDHCPEnabled() first before setting the IP! This function has NOT been tested on a real device before!</p></div>
 <!-- headerDoc=discussion;uid=//apple_ref/c/func/setIP;name=end --><!-- end discussion -->
 <hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/setSoftAPSettings;   name=setSoftAPSettings -->
 <a name="//apple_ref/c/func/setSoftAPSettings"></a>
 <h3><a name="setSoftAPSettings">setSoftAPSettings</a></h3>
-<hr class="afterName"><div class='declaration_indent'>
+<hr class="afterName"><p><!-- headerDoc=abstract;uid=//apple_ref/c/func/setSoftAPSettings;name=start --><!-- begin abstract --><p>Sets the SoftAP's settings, such as the name of the hotspot, password and so on<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/c/func/setSoftAPSettings;name=end --></p>
+<div class='declaration_indent'>
 <pre><!-- headerDoc=declaration;uid=//apple_ref/c/func/setSoftAPSettings;name=start --><!-- a logicalPath="//apple_ref/cpp/cl/int16_t //apple_ref/cpp/tdef/int16_t //apple_ref/cpp/tag/int16_t //apple_ref/cpp/struct/int16_t //apple_ref/cpp/intf/int16_t //apple_ref/doc/anysymbol/int16_t" machineGenerated="true" --><span class="type">int16_t</span><!-- /a --> <!-- a logicalPath="//apple_ref/cpp/cl/SPEEEduino_LowLevel //apple_ref/cpp/tdef/SPEEEduino_LowLevel //apple_ref/cpp/tag/SPEEEduino_LowLevel //apple_ref/cpp/struct/SPEEEduino_LowLevel //apple_ref/cpp/intf/SPEEEduino_LowLevel //apple_ref/doc/anysymbol/SPEEEduino_LowLevel" machineGenerated="true" --><span class="type">SPEEEduino_LowLevel</span><!-- /a -->::<!-- a logicalPath="//apple_ref/cpp/instm/setSoftAPSettings //apple_ref/cpp/clm/setSoftAPSettings //apple_ref/cpp/intfcm/setSoftAPSettings //apple_ref/cpp/intfm/setSoftAPSettings //apple_ref/cpp/func/setSoftAPSettings //apple_ref/cpp/ftmplt/setSoftAPSettings //apple_ref/cpp/defn/setSoftAPSettings //apple_ref/cpp/macro/setSoftAPSettings //apple_ref/doc/anysymbol/setSoftAPSettings" machineGenerated="true" --><span class="function">setSoftAPSettings</span><!-- /a -->(
     <!-- a logicalPath="//apple_ref/cpp/cl/String //apple_ref/cpp/tdef/String //apple_ref/cpp/tag/String //apple_ref/cpp/struct/String //apple_ref/cpp/intf/String //apple_ref/doc/anysymbol/String" machineGenerated="true" --><span class="type">String</span><!-- /a -->&amp; <span class="param">ssid</span>,
     <!-- a logicalPath="//apple_ref/cpp/cl/String //apple_ref/cpp/tdef/String //apple_ref/cpp/tag/String //apple_ref/cpp/struct/String //apple_ref/cpp/intf/String //apple_ref/doc/anysymbol/String" machineGenerated="true" --><span class="type">String</span><!-- /a -->&amp; <span class="param">password</span>,
@@ -716,14 +692,11 @@ Once this completes successfully, you MUST start reading the input
 </div>
 <h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5><p><!-- begin return value --><p>0 if successfully set the name of the station, 1 if the command failed, and -1 if the command timed out
 
-<!-- end return value --></p><h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
-<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/c/func/setSoftAPSettings;name=start --><p>Sets the SoftAP's settings, such as the name of the hotspot, password and so on
-</p>
-<!-- headerDoc=discussion;uid=//apple_ref/c/func/setSoftAPSettings;name=end --><!-- end discussion -->
-<hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/setSSLBufferSize;   name=setSSLBufferSize -->
+<!-- end return value --></p><hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/setSSLBufferSize;   name=setSSLBufferSize -->
 <a name="//apple_ref/c/func/setSSLBufferSize"></a>
 <h3><a name="setSSLBufferSize">setSSLBufferSize</a></h3>
-<hr class="afterName"><div class='declaration_indent'>
+<hr class="afterName"><p><!-- headerDoc=abstract;uid=//apple_ref/c/func/setSSLBufferSize;name=start --><!-- begin abstract --><p>Sets the SSL buffer size.<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/c/func/setSSLBufferSize;name=end --></p>
+<div class='declaration_indent'>
 <pre><!-- headerDoc=declaration;uid=//apple_ref/c/func/setSSLBufferSize;name=start --><!-- a logicalPath="//apple_ref/cpp/cl/int16_t //apple_ref/cpp/tdef/int16_t //apple_ref/cpp/tag/int16_t //apple_ref/cpp/struct/int16_t //apple_ref/cpp/intf/int16_t //apple_ref/doc/anysymbol/int16_t" machineGenerated="true" --><span class="type">int16_t</span><!-- /a --> <!-- a logicalPath="//apple_ref/cpp/cl/SPEEEduino_LowLevel //apple_ref/cpp/tdef/SPEEEduino_LowLevel //apple_ref/cpp/tag/SPEEEduino_LowLevel //apple_ref/cpp/struct/SPEEEduino_LowLevel //apple_ref/cpp/intf/SPEEEduino_LowLevel //apple_ref/doc/anysymbol/SPEEEduino_LowLevel" machineGenerated="true" --><span class="type">SPEEEduino_LowLevel</span><!-- /a -->::<!-- a logicalPath="//apple_ref/cpp/instm/setSSLBufferSize //apple_ref/cpp/clm/setSSLBufferSize //apple_ref/cpp/intfcm/setSSLBufferSize //apple_ref/cpp/intfm/setSSLBufferSize //apple_ref/cpp/func/setSSLBufferSize //apple_ref/cpp/ftmplt/setSSLBufferSize //apple_ref/cpp/defn/setSSLBufferSize //apple_ref/cpp/macro/setSSLBufferSize //apple_ref/doc/anysymbol/setSSLBufferSize" machineGenerated="true" --><span class="function">setSSLBufferSize</span><!-- /a -->(
     <!-- a logicalPath="//apple_ref/cpp/cl/uint16_t //apple_ref/cpp/tdef/uint16_t //apple_ref/cpp/tag/uint16_t //apple_ref/cpp/struct/uint16_t //apple_ref/cpp/intf/uint16_t //apple_ref/doc/anysymbol/uint16_t" machineGenerated="true" --><span class="type">uint16_t</span><!-- /a --> <span class="param">bufferSize</span>) <!-- headerDoc=declaration;uid=//apple_ref/c/func/setSSLBufferSize;name=end --></pre>
 </div>
@@ -737,14 +710,11 @@ Once this completes successfully, you MUST start reading the input
 </div>
 <h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5><p><!-- begin return value --><p>0 if successfully set the buffer size, 1 if there's an error, 2 if the buffer size is not within range of [2048,4096] and -1 if the command timed out
 
-<!-- end return value --></p><h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
-<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/c/func/setSSLBufferSize;name=start --><p>Sets the SSL buffer size.
-</p>
-<!-- headerDoc=discussion;uid=//apple_ref/c/func/setSSLBufferSize;name=end --><!-- end discussion -->
-<hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/setStationName;   name=setStationName -->
+<!-- end return value --></p><hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/setStationName;   name=setStationName -->
 <a name="//apple_ref/c/func/setStationName"></a>
 <h3><a name="setStationName">setStationName</a></h3>
-<hr class="afterName"><div class='declaration_indent'>
+<hr class="afterName"><p><!-- headerDoc=abstract;uid=//apple_ref/c/func/setStationName;name=start --><!-- begin abstract --><p>Sets name of the ESP8266 client (in other words, when it's connected to a Wi-Fi hotspot)<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/c/func/setStationName;name=end --></p>
+<div class='declaration_indent'>
 <pre><!-- headerDoc=declaration;uid=//apple_ref/c/func/setStationName;name=start --><!-- a logicalPath="//apple_ref/cpp/cl/int16_t //apple_ref/cpp/tdef/int16_t //apple_ref/cpp/tag/int16_t //apple_ref/cpp/struct/int16_t //apple_ref/cpp/intf/int16_t //apple_ref/doc/anysymbol/int16_t" machineGenerated="true" --><span class="type">int16_t</span><!-- /a --> <!-- a logicalPath="//apple_ref/cpp/cl/SPEEEduino_LowLevel //apple_ref/cpp/tdef/SPEEEduino_LowLevel //apple_ref/cpp/tag/SPEEEduino_LowLevel //apple_ref/cpp/struct/SPEEEduino_LowLevel //apple_ref/cpp/intf/SPEEEduino_LowLevel //apple_ref/doc/anysymbol/SPEEEduino_LowLevel" machineGenerated="true" --><span class="type">SPEEEduino_LowLevel</span><!-- /a -->::<!-- a logicalPath="//apple_ref/cpp/instm/setStationName //apple_ref/cpp/clm/setStationName //apple_ref/cpp/intfcm/setStationName //apple_ref/cpp/intfm/setStationName //apple_ref/cpp/func/setStationName //apple_ref/cpp/ftmplt/setStationName //apple_ref/cpp/defn/setStationName //apple_ref/cpp/macro/setStationName //apple_ref/doc/anysymbol/setStationName" machineGenerated="true" --><span class="function">setStationName</span><!-- /a -->(
     <!-- a logicalPath="//apple_ref/cpp/cl/String //apple_ref/cpp/tdef/String //apple_ref/cpp/tag/String //apple_ref/cpp/struct/String //apple_ref/cpp/intf/String //apple_ref/doc/anysymbol/String" machineGenerated="true" --><span class="type">String</span><!-- /a -->&amp; <span class="param">name</span>) <!-- headerDoc=declaration;uid=//apple_ref/c/func/setStationName;name=end --></pre>
 </div>
@@ -758,14 +728,12 @@ Once this completes successfully, you MUST start reading the input
 </div>
 <h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5><p><!-- begin return value --><p>0 if successfully set the name of the station, 1 if the command failed, and -1 if the command timed out
 
-<!-- end return value --></p><h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
-<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/c/func/setStationName;name=start --><p>Sets name of the ESP8266 client (in other words, when it's connected to a Wi-Fi hotspot)
-</p>
-<!-- headerDoc=discussion;uid=//apple_ref/c/func/setStationName;name=end --><!-- end discussion -->
-<hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/setWiFiMode;   name=setWiFiMode -->
+<!-- end return value --></p><hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/setWiFiMode;   name=setWiFiMode -->
 <a name="//apple_ref/c/func/setWiFiMode"></a>
 <h3><a name="setWiFiMode">setWiFiMode</a></h3>
-<hr class="afterName"><div class='declaration_indent'>
+<hr class="afterName"><p><!-- headerDoc=abstract;uid=//apple_ref/c/func/setWiFiMode;name=start --><!-- begin abstract --><p>Sets the Wi-Fi mode of the device to operate as a Wi-Fi station (client), access point, or both.
+This setting will be saved in non-volatile memory<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/c/func/setWiFiMode;name=end --></p>
+<div class='declaration_indent'>
 <pre><!-- headerDoc=declaration;uid=//apple_ref/c/func/setWiFiMode;name=start --><!-- a logicalPath="//apple_ref/cpp/cl/int16_t //apple_ref/cpp/tdef/int16_t //apple_ref/cpp/tag/int16_t //apple_ref/cpp/struct/int16_t //apple_ref/cpp/intf/int16_t //apple_ref/doc/anysymbol/int16_t" machineGenerated="true" --><span class="type">int16_t</span><!-- /a --> <!-- a logicalPath="//apple_ref/cpp/cl/SPEEEduino_LowLevel //apple_ref/cpp/tdef/SPEEEduino_LowLevel //apple_ref/cpp/tag/SPEEEduino_LowLevel //apple_ref/cpp/struct/SPEEEduino_LowLevel //apple_ref/cpp/intf/SPEEEduino_LowLevel //apple_ref/doc/anysymbol/SPEEEduino_LowLevel" machineGenerated="true" --><span class="type">SPEEEduino_LowLevel</span><!-- /a -->::<!-- a logicalPath="//apple_ref/cpp/instm/setWiFiMode //apple_ref/cpp/clm/setWiFiMode //apple_ref/cpp/intfcm/setWiFiMode //apple_ref/cpp/intfm/setWiFiMode //apple_ref/cpp/func/setWiFiMode //apple_ref/cpp/ftmplt/setWiFiMode //apple_ref/cpp/defn/setWiFiMode //apple_ref/cpp/macro/setWiFiMode //apple_ref/doc/anysymbol/setWiFiMode" machineGenerated="true" --><span class="function">setWiFiMode</span><!-- /a -->(
     <!-- a logicalPath="//apple_ref/cpp/cl/WiFiMode //apple_ref/cpp/tdef/WiFiMode //apple_ref/cpp/tag/WiFiMode //apple_ref/cpp/struct/WiFiMode //apple_ref/cpp/intf/WiFiMode //apple_ref/doc/anysymbol/WiFiMode" machineGenerated="true" --><span class="type">WiFiMode</span><!-- /a --> <span class="param">mode</span>) <!-- headerDoc=declaration;uid=//apple_ref/c/func/setWiFiMode;name=end --></pre>
 </div>
@@ -779,15 +747,11 @@ Once this completes successfully, you MUST start reading the input
 </div>
 <h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5><p><!-- begin return value --><p>0 if successfully set Wi-Fi mode, -1 if it timed out
 
-<!-- end return value --></p><h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
-<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/c/func/setWiFiMode;name=start --><p>Sets the Wi-Fi mode of the device to operate as a Wi-Fi station (client), access point, or both
-This setting will be saved in non-volatile memory
-</p>
-<!-- headerDoc=discussion;uid=//apple_ref/c/func/setWiFiMode;name=end --><!-- end discussion -->
-<hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/slowOpenLink;   name=slowOpenLink -->
+<!-- end return value --></p><hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/slowOpenLink;   name=slowOpenLink -->
 <a name="//apple_ref/c/func/slowOpenLink"></a>
 <h3><a name="slowOpenLink">slowOpenLink</a></h3>
-<hr class="afterName"><div class='declaration_indent'>
+<hr class="afterName"><p><!-- headerDoc=abstract;uid=//apple_ref/c/func/slowOpenLink;name=start --><!-- begin abstract --><p>Opens the serial link from the SPEEEduino to the ESP-01 module, and imposes an artificial delay<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/c/func/slowOpenLink;name=end --></p>
+<div class='declaration_indent'>
 <pre><!-- headerDoc=declaration;uid=//apple_ref/c/func/slowOpenLink;name=start --><!-- a logicalPath="//apple_ref/cpp/cl/void //apple_ref/cpp/tdef/void //apple_ref/cpp/tag/void //apple_ref/cpp/struct/void //apple_ref/cpp/intf/void //apple_ref/doc/anysymbol/void" machineGenerated="true" --><span class="type">void</span><!-- /a --> <!-- a logicalPath="//apple_ref/cpp/cl/SPEEEduino_LowLevel //apple_ref/cpp/tdef/SPEEEduino_LowLevel //apple_ref/cpp/tag/SPEEEduino_LowLevel //apple_ref/cpp/struct/SPEEEduino_LowLevel //apple_ref/cpp/intf/SPEEEduino_LowLevel //apple_ref/doc/anysymbol/SPEEEduino_LowLevel" machineGenerated="true" --><span class="type">SPEEEduino_LowLevel</span><!-- /a -->::<!-- a logicalPath="//apple_ref/cpp/instm/slowOpenLink //apple_ref/cpp/clm/slowOpenLink //apple_ref/cpp/intfcm/slowOpenLink //apple_ref/cpp/intfm/slowOpenLink //apple_ref/cpp/func/slowOpenLink //apple_ref/cpp/ftmplt/slowOpenLink //apple_ref/cpp/defn/slowOpenLink //apple_ref/cpp/macro/slowOpenLink //apple_ref/doc/anysymbol/slowOpenLink" machineGenerated="true" --><span class="function">slowOpenLink</span><!-- /a -->(
     <!-- a logicalPath="//apple_ref/cpp/cl/int //apple_ref/cpp/tdef/int //apple_ref/cpp/tag/int //apple_ref/cpp/struct/int //apple_ref/cpp/intf/int //apple_ref/doc/anysymbol/int" machineGenerated="true" --><span class="type">int</span><!-- /a --> <!-- a logicalPath="//apple_ref/cpp/cl/delayTime //apple_ref/cpp/tdef/delayTime //apple_ref/cpp/tag/delayTime //apple_ref/cpp/struct/delayTime //apple_ref/cpp/intf/delayTime //apple_ref/doc/anysymbol/delayTime" machineGenerated="true" --><span class="type">delayTime</span><!-- /a -->=<span class="number">5000</span>) <!-- headerDoc=declaration;uid=//apple_ref/c/func/slowOpenLink;name=end --></pre>
 </div>
@@ -799,26 +763,21 @@ This setting will be saved in non-volatile memory
 <code>delayTime</code></dt><dd><p>The time to wait before opening the serial port. Defaults to 5 seconds.</dd>
 </dl>
 </div>
-<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
-<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/c/func/slowOpenLink;name=start --><p>Opens the serial link from the SPEEEduino to the ESP-01 module, and imposes an artificial delay
-</p>
-<!-- headerDoc=discussion;uid=//apple_ref/c/func/slowOpenLink;name=end --><!-- end discussion -->
 <hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/smokeTest;   name=smokeTest -->
 <a name="//apple_ref/c/func/smokeTest"></a>
 <h3><a name="smokeTest">smokeTest</a></h3>
-<hr class="afterName"><div class='declaration_indent'>
+<hr class="afterName"><p><!-- headerDoc=abstract;uid=//apple_ref/c/func/smokeTest;name=start --><!-- begin abstract --><p>A simple smoke test to see if the module responds<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/c/func/smokeTest;name=end --></p>
+<div class='declaration_indent'>
 <pre><!-- headerDoc=declaration;uid=//apple_ref/c/func/smokeTest;name=start --><!-- a logicalPath="//apple_ref/cpp/cl/int16_t //apple_ref/cpp/tdef/int16_t //apple_ref/cpp/tag/int16_t //apple_ref/cpp/struct/int16_t //apple_ref/cpp/intf/int16_t //apple_ref/doc/anysymbol/int16_t" machineGenerated="true" --><span class="type">int16_t</span><!-- /a --> <!-- a logicalPath="//apple_ref/cpp/cl/SPEEEduino_LowLevel //apple_ref/cpp/tdef/SPEEEduino_LowLevel //apple_ref/cpp/tag/SPEEEduino_LowLevel //apple_ref/cpp/struct/SPEEEduino_LowLevel //apple_ref/cpp/intf/SPEEEduino_LowLevel //apple_ref/doc/anysymbol/SPEEEduino_LowLevel" machineGenerated="true" --><span class="type">SPEEEduino_LowLevel</span><!-- /a -->::<!-- a logicalPath="//apple_ref/cpp/instm/smokeTest //apple_ref/cpp/clm/smokeTest //apple_ref/cpp/intfcm/smokeTest //apple_ref/cpp/intfm/smokeTest //apple_ref/cpp/func/smokeTest //apple_ref/cpp/ftmplt/smokeTest //apple_ref/cpp/defn/smokeTest //apple_ref/cpp/macro/smokeTest //apple_ref/doc/anysymbol/smokeTest" machineGenerated="true" --><span class="function">smokeTest</span><!-- /a -->() <!-- headerDoc=declaration;uid=//apple_ref/c/func/smokeTest;name=end --></pre>
 </div>
 <h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5><p><!-- begin return value --><p>0, if the test is successful and -1 if the test times out
 
-<!-- end return value --></p><h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
-<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/c/func/smokeTest;name=start --><p>A simple smoke test to see if the module responds
-</p>
-<!-- headerDoc=discussion;uid=//apple_ref/c/func/smokeTest;name=end --><!-- end discussion -->
-<hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/wait;   name=wait -->
+<!-- end return value --></p><hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/wait;   name=wait -->
 <a name="//apple_ref/c/func/wait"></a>
 <h3><a name="wait">wait</a></h3>
-<hr class="afterName"><div class='declaration_indent'>
+<hr class="afterName"><p><!-- headerDoc=abstract;uid=//apple_ref/c/func/wait;name=start --><!-- begin abstract --><p>Waits for a certain serial input. This also prints out the serial data before hitting the correct case
+if debug mode is enabled.<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/c/func/wait;name=end --></p>
+<div class='declaration_indent'>
 <pre><!-- headerDoc=declaration;uid=//apple_ref/c/func/wait;name=start --><!-- a logicalPath="//apple_ref/cpp/cl/int16_t //apple_ref/cpp/tdef/int16_t //apple_ref/cpp/tag/int16_t //apple_ref/cpp/struct/int16_t //apple_ref/cpp/intf/int16_t //apple_ref/doc/anysymbol/int16_t" machineGenerated="true" --><span class="type">int16_t</span><!-- /a --> <!-- a logicalPath="//apple_ref/cpp/cl/SPEEEduino_LowLevel //apple_ref/cpp/tdef/SPEEEduino_LowLevel //apple_ref/cpp/tag/SPEEEduino_LowLevel //apple_ref/cpp/struct/SPEEEduino_LowLevel //apple_ref/cpp/intf/SPEEEduino_LowLevel //apple_ref/doc/anysymbol/SPEEEduino_LowLevel" machineGenerated="true" --><span class="type">SPEEEduino_LowLevel</span><!-- /a -->::<!-- a logicalPath="//apple_ref/cpp/instm/wait //apple_ref/cpp/clm/wait //apple_ref/cpp/intfcm/wait //apple_ref/cpp/intfm/wait //apple_ref/cpp/func/wait //apple_ref/cpp/ftmplt/wait //apple_ref/cpp/defn/wait //apple_ref/cpp/macro/wait //apple_ref/doc/anysymbol/wait" machineGenerated="true" --><span class="function">wait</span><!-- /a -->(
     <!-- a logicalPath="//apple_ref/cpp/cl/char //apple_ref/cpp/tdef/char //apple_ref/cpp/tag/char //apple_ref/cpp/struct/char //apple_ref/cpp/intf/char //apple_ref/doc/anysymbol/char" machineGenerated="true" --><span class="type">char</span><!-- /a --> <span class="type">*</span><span class="param">values</span>,
     <!-- a logicalPath="//apple_ref/cpp/cl/uint16_t //apple_ref/cpp/tdef/uint16_t //apple_ref/cpp/tag/uint16_t //apple_ref/cpp/struct/uint16_t //apple_ref/cpp/intf/uint16_t //apple_ref/doc/anysymbol/uint16_t" machineGenerated="true" --><span class="type">uint16_t</span><!-- /a --> <span class="param">timeOut</span>) <!-- headerDoc=declaration;uid=//apple_ref/c/func/wait;name=end --></pre>
@@ -836,15 +795,11 @@ This setting will be saved in non-volatile memory
 </div>
 <h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5><p><!-- begin return value --><p>-1 if timed out, 0, 1, 2, ... if the data matches one of the values in the values string
 
-<!-- end return value --></p><h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
-<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/c/func/wait;name=start --><p>Waits for a certain serial input. This also prints out the serial data before hitting the correct case
-if debug mode is enabled.
-</p>
-<!-- headerDoc=discussion;uid=//apple_ref/c/func/wait;name=end --><!-- end discussion -->
-<hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/writeCommandFromPROGMEM;   name=writeCommandFromPROGMEM -->
+<!-- end return value --></p><hr class="betweenAPIEntries"><!-- headerDoc=func;  uid=//apple_ref/c/func/writeCommandFromPROGMEM;   name=writeCommandFromPROGMEM -->
 <a name="//apple_ref/c/func/writeCommandFromPROGMEM"></a>
 <h3><a name="writeCommandFromPROGMEM">writeCommandFromPROGMEM</a></h3>
-<hr class="afterName"><div class='declaration_indent'>
+<hr class="afterName"><p><!-- headerDoc=abstract;uid=//apple_ref/c/func/writeCommandFromPROGMEM;name=start --><!-- begin abstract --><p>Writes a command from PROGMEM to the ESP8266's serial ports<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/c/func/writeCommandFromPROGMEM;name=end --></p>
+<div class='declaration_indent'>
 <pre><!-- headerDoc=declaration;uid=//apple_ref/c/func/writeCommandFromPROGMEM;name=start --><!-- a logicalPath="//apple_ref/cpp/cl/void //apple_ref/cpp/tdef/void //apple_ref/cpp/tag/void //apple_ref/cpp/struct/void //apple_ref/cpp/intf/void //apple_ref/doc/anysymbol/void" machineGenerated="true" --><span class="type">void</span><!-- /a --> <!-- a logicalPath="//apple_ref/cpp/cl/SPEEEduino_LowLevel //apple_ref/cpp/tdef/SPEEEduino_LowLevel //apple_ref/cpp/tag/SPEEEduino_LowLevel //apple_ref/cpp/struct/SPEEEduino_LowLevel //apple_ref/cpp/intf/SPEEEduino_LowLevel //apple_ref/doc/anysymbol/SPEEEduino_LowLevel" machineGenerated="true" --><span class="type">SPEEEduino_LowLevel</span><!-- /a -->::<!-- a logicalPath="//apple_ref/cpp/instm/writeCommandFromPROGMEM //apple_ref/cpp/clm/writeCommandFromPROGMEM //apple_ref/cpp/intfcm/writeCommandFromPROGMEM //apple_ref/cpp/intfm/writeCommandFromPROGMEM //apple_ref/cpp/func/writeCommandFromPROGMEM //apple_ref/cpp/ftmplt/writeCommandFromPROGMEM //apple_ref/cpp/defn/writeCommandFromPROGMEM //apple_ref/cpp/macro/writeCommandFromPROGMEM //apple_ref/doc/anysymbol/writeCommandFromPROGMEM" machineGenerated="true" --><span class="function">writeCommandFromPROGMEM</span><!-- /a -->(
     <span class="keyword">const</span> <!-- a logicalPath="//apple_ref/cpp/cl/char //apple_ref/cpp/tdef/char //apple_ref/cpp/tag/char //apple_ref/cpp/struct/char //apple_ref/cpp/intf/char //apple_ref/doc/anysymbol/char" machineGenerated="true" --><span class="type">char</span><!-- /a --> <span class="type">*</span><span class="param">text</span>) <!-- headerDoc=declaration;uid=//apple_ref/c/func/writeCommandFromPROGMEM;name=end --></pre>
 </div>
@@ -856,12 +811,8 @@ if debug mode is enabled.
 <code>text</code></dt><dd><p>The constant from PROGMEM to write to the ESP8266 module</dd>
 </dl>
 </div>
-<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
-<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/c/func/writeCommandFromPROGMEM;name=start --><p>Writes a command from PROGMEM to the ESP8266's serial ports
-</p>
-<!-- headerDoc=discussion;uid=//apple_ref/c/func/writeCommandFromPROGMEM;name=end --><!-- end discussion -->
 <p class="gapBeforeFooter">&nbsp;</p><hr class="afterFooter"><div class="hd_copyright_and_timestamp">
-<p class="hd_timestamp">Last Updated: Wednesday, October 25, 2017
+<p class="hd_timestamp">Last Updated: Thursday, October 26, 2017
 </p></div>
 </td></tr></table>
 </body></html>

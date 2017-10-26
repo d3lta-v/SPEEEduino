@@ -54,9 +54,9 @@ SPEEEduino_LowLevel::SPEEEduino_LowLevel(bool debugMode=false) : _ESP01UART(2, 4
 #pragma mark - Low level features
 
 /*!
- * Inputs raw text into the ESP-01 module. This command INCLUDES the carriage return and newline characters
- * @warning Make sure that you manually
- *
+ * @brief Inputs raw text into the ESP-01 module. This command INCLUDES the carriage return and
+ * newline characters
+ * @warning Make sure that you manually check for the response with the wait() function
  * @param input Your input into the ESP8266 module
  */
 void SPEEEduino_LowLevel::rawInput(String input) {
@@ -67,7 +67,7 @@ void SPEEEduino_LowLevel::rawInput(String input) {
 #pragma mark - Serial link functions
 
 /*!
- * Opens the serial link from the SPEEEduino to the ESP-01 module
+ * @brief Opens the serial link from the SPEEEduino to the ESP-01 module
  */
 void SPEEEduino_LowLevel::openLink() {
     if (SPEEEduino_LowLevel::debug) {
@@ -77,7 +77,7 @@ void SPEEEduino_LowLevel::openLink() {
 }
 
 /*!
- * Opens the serial link from the SPEEEduino to the ESP-01 module, and imposes an artificial delay
+ * @brief Opens the serial link from the SPEEEduino to the ESP-01 module, and imposes an artificial delay
  *
  * @param delayTime The time to wait before opening the serial port. Defaults to 5 seconds.
  */
@@ -92,7 +92,7 @@ void SPEEEduino_LowLevel::slowOpenLink(int delayTime=5000) {
 #pragma mark - Basic functions
 
 /*!
- * A simple smoke test to see if the module responds
+ * @brief A simple smoke test to see if the module responds
  *
  * @return 0, if the test is successful and -1 if the test times out
  */
@@ -102,7 +102,7 @@ int16_t SPEEEduino_LowLevel::smokeTest() {
 }
 
 /*!
- * Lists the firmware version of the firmware on board.
+ * @brief Lists the firmware version of the firmware on board.
  * This information contains the AT version, SDK version and compile time
  *
  * @return 0, if it responds and -1 if it times out
@@ -123,7 +123,7 @@ int16_t SPEEEduino_LowLevel::reset() {
 }
 
 /*!
- * Initiates the deep sleep feature for the ESP8266 module
+ * @brief Initiates the deep sleep feature for the ESP8266 module
  *
  * @warning This is a blocking function with potentially long delays if the blocking flag is set to true
  * @param sleepTime Time to sleep, in milliseconds. This must not exceed the length of an unsigned 16-bit integer
@@ -144,7 +144,7 @@ int16_t SPEEEduino_LowLevel::beginDeepSleep(uint16_t sleepTime, bool blocking) {
 #pragma mark - Wi-Fi connectivity functions
 
 /*!
- * Sets the Wi-Fi mode of the device to operate as a Wi-Fi station (client), access point, or both
+ * @brief Sets the Wi-Fi mode of the device to operate as a Wi-Fi station (client), access point, or both.
  * This setting will be saved in non-volatile memory
  *
  * @param mode The mode of the device to set. Accepts STATION, AP and BOTH
@@ -158,7 +158,7 @@ int16_t SPEEEduino_LowLevel::setWiFiMode(WiFiMode mode) {
 }
 
 /*!
- * Lists the access points around the device
+ * @brief Lists the access points around the device
  *
  * @return 0 if successfully listed all the access points, -1 if the request timed out
  */
@@ -168,7 +168,7 @@ int16_t SPEEEduino_LowLevel::listAP() {
 }
 
 /*!
- * Joins an access point with the SSID and password specified. Only works for PSK-based networks (password only)
+ * @brief Joins an access point with the SSID and password specified. Only works for PSK-based networks (password only)
  *
  * @param ssid The SSID of the access point
  * @param password The password of the access point
@@ -184,7 +184,7 @@ int16_t SPEEEduino_LowLevel::joinAP(String ssid, String password) {
 }
 
 /*!
- * Disconnect from an access point.
+ * @brief Disconnect from an access point.
  *
  * @return 0 if successfully disconnected access point, 1 if it failed, and -1 if it timed out
  */
@@ -194,7 +194,7 @@ int16_t SPEEEduino_LowLevel::disconnectAP() {
 }
 
 /*!
- * Get the IP address of the module. If the module is in station mode, it retrieves the assigned IP address of the module.
+ * @brief Get the IP address of the module. If the module is in station mode, it retrieves the assigned IP address of the module.
  * If the module is in SoftAP mode, it will retrieve the IP address of the access point created by the module.
  *
  * @return 0, if it successfully returns the IP address and -1 if it times out
@@ -205,7 +205,7 @@ int16_t SPEEEduino_LowLevel::getLocalIP() {
 }
 
 /*!
- * Sets the DHCP to be enabled or disabled for both station and softAP modes. This
+ * @brief Sets the DHCP to be enabled or disabled for both station and softAP modes. This
  *
  * @warning This function is only for station mode only!
  * @param enabled Whether or not to enable the DHCP server/client
@@ -221,7 +221,7 @@ int16_t SPEEEduino_LowLevel::setDHCPEnabled(bool enabled) {
 }
 
 /*!
- * Sets name of the ESP8266 client (in other words, when it's connected to a Wi-Fi hotspot)
+ * @brief Sets name of the ESP8266 client (in other words, when it's connected to a Wi-Fi hotspot)
  *
  * @param name The host name of the ESP8266 station that you want to set it to
  * @return 0 if successfully set the name of the station, 1 if the command failed, and -1 if the command timed out
@@ -234,7 +234,7 @@ int16_t SPEEEduino_LowLevel::setStationName(String& name) {
 }
 
 /*!
- * Sets the SoftAP's settings, such as the name of the hotspot, password and so on
+ * @brief Sets the SoftAP's settings, such as the name of the hotspot, password and so on
  *
  * @param ssid The SSID or name of the hotspot being broadcasted
  * @param password The password of the hotspot
@@ -254,7 +254,7 @@ int16_t SPEEEduino_LowLevel::setSoftAPSettings(String& ssid, String& password, u
 }
 
 /*!
- * Sets parameters for static IP allocation without DHCP.
+ * @brief Sets parameters for static IP allocation without DHCP.
  *
  * @warning You must turn DHCP off with setDHCPEnabled() first before setting the IP! This function has NOT been tested on a real device before!
  *
@@ -289,7 +289,7 @@ int16_t SPEEEduino_LowLevel::setIP(bool permanent, String ip, String gateway="",
 #pragma mark - TCP/IP commands
 
 /*!
- * Starts a TCP server with a certain port
+ * @brief Starts a TCP server with a certain port
  *
  * @param createServer Whether to create or delete the server on the port.
  * @param port The port to create the TCP server on
@@ -306,7 +306,7 @@ int16_t SPEEEduino_LowLevel::beginTCPServer(TCPServer createServer, uint16_t por
 }
 
 /*!
- * Sets the mode for the number of simultaneous connections allowed
+ * @brief Sets the mode for the number of simultaneous connections allowed
  *
  * @param name The host name of the ESP8266 station that you want to set it to
  * @return 0 if successfully set the name of the station, 1 if the command failed, and -1 if the command timed out
@@ -320,7 +320,7 @@ int16_t SPEEEduino_LowLevel::setConnectionAmount(ConnectionAmount amount) {
 }
 
 /*!
- * Initiates a connection when the module is set to single connection mode, in other words, AT+CIPMUX? returns 0
+ * @brief Initiates a connection when the module is set to single connection mode, in other words, AT+CIPMUX? returns 0
  *
  * @param type The type of connection, such as TCP, UDP or SSL (actually TLSv1.1)
  * @param remoteIP The IP address or domain of the server it's connecting to
@@ -340,7 +340,7 @@ int16_t SPEEEduino_LowLevel::beginSingleConnection(ConnectionType type, String r
 }
 
 /*!
- * Sends data on single connection mode, this must be run directly after `startSingleConnection()`. 
+ * @brief Sends data on single connection mode, this must be run directly after `startSingleConnection()`.
  * Once this completes successfully, you MUST start reading the input
  *
  * @param data The data to send into the connection socket
@@ -367,7 +367,7 @@ int16_t SPEEEduino_LowLevel::sendDataSingleConnection(String& data) {
 }
 
 /*!
- * Sends data on multiple connection mode, this must be run directly after `startSingleConnection()`.
+ * @brief Sends data on multiple connection mode, this must be run directly after `startSingleConnection()`.
  * Once this completes successfully, you MUST start reading the input
  *
  * @param data The data to send into the connection socket
@@ -401,7 +401,7 @@ int16_t SPEEEduino_LowLevel::sendDataMultipleConnection(String& data, uint8_t li
 }
 
 /*!
- * Waits for data with a timeout.
+ * @brief Waits for data with a timeout.
  *
  * @warning This function is a BLOCKING function, meaning that it will pause your program execution
  * @param connectionAmount SINGLE or MULTIPLE, depending on what did you start your ESP8266 module with
@@ -487,7 +487,7 @@ waitIPD:
 }
 
 /*!
- * Closes the current connection
+ * @brief Closes the current connection
  *
  * @param linkID Optional, link ID, ranging from 0 to 4 if you're using multiple connections, and 5 if you want to close all connections. Do not input this parameter if you're using a single connection.
  * @return 0 if the connection is closed, 1 if the command failed, -1 if the command timed out
@@ -504,7 +504,7 @@ int16_t SPEEEduino_LowLevel::endConnection(int8_t linkID = -1) {
 }
 
 /*!
- * Sets the SSL buffer size.
+ * @brief Sets the SSL buffer size.
  *
  * @param bufferSize The desired size of the SSL buffer. Must be within 2048 to 4096
  * @return 0 if successfully set the buffer size, 1 if there's an error, 2 if the buffer size is not within range of [2048,4096] and -1 if the command timed out
@@ -523,7 +523,7 @@ int16_t SPEEEduino_LowLevel::setSSLBufferSize(uint16_t bufferSize) {
 #pragma mark - Helper functions
 
 /*!
- * Writes a command from PROGMEM to the ESP8266's serial ports
+ * @brief Writes a command from PROGMEM to the ESP8266's serial ports
  *
  * @param text The constant from PROGMEM to write to the ESP8266 module
  */
@@ -535,7 +535,7 @@ void SPEEEduino_LowLevel::writeCommandFromPROGMEM(const char* text) {
 }
 
 /*!
- * Waits for a certain serial input. This also prints out the serial data before hitting the correct case
+ * @brief Waits for a certain serial input. This also prints out the serial data before hitting the correct case
  * if debug mode is enabled.
  *
  * @param values Semicolon delimited expected C-style string
