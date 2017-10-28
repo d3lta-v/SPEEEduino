@@ -19,14 +19,19 @@ Related project: [ESPblaster](https://github.com/sammy0025/ESPblaster)
 * **Image Assets**: Image assets for websites related to the SPEEEduino and markdown pages.
 
 ### Startup states table
-A simplified version of this table is also available on the back of the SPEEEduino v1.1's board. 
+A simplified version of this table is also available on the back of the SPEEEduino v1.1's board.
 
 |  | GPIO0 (1) | GPIO2 (2) | ESP-RX connect to D4 (3) | ESP-TX connect to D2 (4) | ESP-RESET Button |
-|-------------------|:---------:|:---------:|:------------------------:|:------------------------:|:---------------------------------:|
+|---------|:---------:|:---------:|:---------|:|:---------|:|:---------|:|
 | Wi-Fi Enable | ⬆️ | ⬆️ | ⬆️ | ⬆️ | Leave open |
 | Disconnect ESP-01 | ❎ | ❎ | ⬇️ | ⬇️ | Leave open |
 | Reset ESP-01 | ❎ | ❎ | ❎ | ❎ | Press down |
 | Flash ESP-01 | ⬇️ | ⬆️ | ⬇️ | ⬇️ | Press down, set switches, release |
+
+## Contributing
+Contributing to the SPEEEduino Git Repository requires you to have EAGLE 8.4 or newer which supports Managed Libraries.
+
+SPEEEduino primarily uses EAGLE's Managed Libraries made by Sparkfun, but also contain our own custom footprints and SMD component footprints from Cytron.
 
 ## Our team
 * Project Supervisor: [Teo Shin Jen](https://www.youracclaim.com/user/sjteo)
@@ -38,4 +43,3 @@ A simplified version of this table is also available on the back of the SPEEEdui
 ![OSHW](https://www.oshwa.org/wp-content/uploads/2014/03/oshw-logo-100-px.png)
 
 Open Source Hardware (OSHW)
-
