@@ -3,6 +3,8 @@
 .AppleDouble
 .LSOverride
 UserInterfaceState.xcuserstate
+*.xcbkptlist
+*.sketch
 
 # Icon must end with two \r
 Icon
