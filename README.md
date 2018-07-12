@@ -22,7 +22,7 @@ Related project: [ESPblaster](https://github.com/sammy0025/ESPblaster)
 A simplified version of this table is also available on the back of the SPEEEduino v1.1's board.
 
 |  | GPIO0 (1) | GPIO2 (2) | ESP-RX connect to D4 (3) | ESP-TX connect to D2 (4) | ESP-RESET Button |
-|---------|:---------:|:---------:|:---------|:|:---------|:|:---------|:|
+|---------|:---------:|:---------:|:---------:|:---------:|:---------:|
 | Wi-Fi Enable | ⬆️ | ⬆️ | ⬆️ | ⬆️ | Leave open |
 | Disconnect ESP-01 | ❎ | ❎ | ⬇️ | ⬇️ | Leave open |
 | Reset ESP-01 | ❎ | ❎ | ❎ | ❎ | Press down |
